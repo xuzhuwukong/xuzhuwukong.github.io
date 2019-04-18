@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-16T22:22:01.467Z</updated>
+  <updated>2019-04-18T07:04:29.770Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,171 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python 常用模块函数</title>
+    <link href="http://yoursite.com/2019/03/20/python%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97/"/>
+    <id>http://yoursite.com/2019/03/20/python常用模块/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T07:04:29.770Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="数值计算："><a href="#数值计算：" class="headerlink" title="数值计算："></a>数值计算：</h1><ul><li><p>浮点数高精度</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from decimal import *</span><br><span class="line">getcontext()</span><br><span class="line">getcontext().prec = 50</span><br><span class="line">a = &apos;3.141592688999999999999&apos;</span><br><span class="line">Decimal(a)</span><br></pre></td></tr></table></figure></li><li><p>十进制转二进制</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin(10)</span><br></pre></td></tr></table></figure></li><li><p>十进制转八进制</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oct(10)</span><br></pre></td></tr></table></figure></li><li><p>十进制转16进制</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hex(10)</span><br></pre></td></tr></table></figure></li><li><p>字符转ASCII</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ord(&apos;a&apos;)</span><br></pre></td></tr></table></figure></li></ul><h1 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h1><p>不可变类型数字、字符串、元组可以用hash, 可变类型列表不可用</p><h1 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate"></a>enumerate</h1><p>用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;数值计算：&quot;&gt;&lt;a href=&quot;#数值计算：&quot; class=&quot;headerlink&quot; title=&quot;数值计算：&quot;&gt;&lt;/a&gt;数值计算：&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;浮点数高精度&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 常用模块函数" scheme="http://yoursite.com/tags/Python-%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%9D%97%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3小时学习Python基础</title>
+    <link href="http://yoursite.com/2019/03/20/python-%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2019/03/20/python-基础/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T09:24:53.645Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="变量variable"><a href="#变量variable" class="headerlink" title="变量variable"></a>变量variable</h1><h2 id="变量的作用"><a href="#变量的作用" class="headerlink" title="变量的作用"></a>变量的作用</h2><pre><code>存数据(标记）占内存variables are used to store information and be referenced and manipulated in a program, labelling data with a descriptive name, it is helpful to think variables as containers hold water.their sole purpose is to label and store data in memory.</code></pre><h2 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h2><pre><code>变量第一个字母不可以是数字，只能是字母数字或下划线的任意组合python语法关键字不可以用于定义变量驼峰体 AgeOfXiaoming = 30下划线体 age_of_xiaoming = 30(官方推荐)</code></pre><h2 id="变量的调用"><a href="#变量的调用" class="headerlink" title="变量的调用"></a>变量的调用</h2><pre><code>a = 1b = aa = 3, b=?</code></pre><h2 id="常量的定义"><a href="#常量的定义" class="headerlink" title="常量的定义"></a>常量的定义</h2><pre><code>python中无定义常量的语法，约定常量定义全部大写PI = 3.1415926</code></pre><h2 id="用户交互"><a href="#用户交互" class="headerlink" title="用户交互"></a>用户交互</h2><pre><code>name = input(&quot;what&apos;s your name?&quot;)</code></pre><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><pre><code>#在重要和不好理解的地方加注释可以用中文或英文</code></pre><hr><h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><img src="/2019/03/20/python-基础/数据类型.png"><pre><code>整型 int 64位计算机寻址范围-2^63~2^63-1,python3中无long浮点数 float python默认的精度是17位，就是小数点后16位</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 2**63</span><br><span class="line">b = 1.1415926</span><br><span class="line">type(a)</span><br></pre></td></tr></table></figure><pre><code>布尔类型TrueFalse</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 10</span><br><span class="line">b = 9</span><br><span class="line">a &gt; b</span><br></pre></td></tr></table></figure><pre><code>复数</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3+2.7j</span><br></pre></td></tr></table></figure><pre><code>字符串</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">name1 = &apos;小红&apos;</span><br><span class="line">name2 = &quot;小明&apos;和&apos;小红&quot; </span><br><span class="line">msg = &apos;&apos;&apos;小明和小红</span><br><span class="line">小红和小明&apos;&apos;&apos;</span><br></pre></td></tr></table></figure><pre><code>字符拼接(不可跨类型)</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name1+name2</span><br><span class="line">name1*name2</span><br></pre></td></tr></table></figure><pre><code>常用占位符的含义s : 获取传入对象的__str__方法的返回值，并将其格式化到指定位置r : 获取传入对象的__repr__方法的返回值，并将其格式化到指定位置c : 整数：将数字转换成其unicode对应的值，10进制范围为 0 &lt;= i &lt;= 1114111（py27则只支持0-255）；字符：将字符添加到指定位置o : 将整数转换成 八  进制表示，并将其格式化到指定位置x : 将整数转换成十六进制表示，并将其格式化到指定位置d : 将整数、浮点数转换成 十 进制表示，并将其格式化到指定位置e : 将整数、浮点数转换成科学计数法，并将其格式化到指定位置（小写e）E : 将整数、浮点数转换成科学计数法，并将其格式化到指定位置（大写E）f :  将整数、浮点数转换成浮点数表示，并将其格式化到指定位置（默认保留小数点后6位）F : 同上g : 自动调整将整数、浮点数转换成 浮点型或科学计数法表示（超过6位数用科学计数法），并将其格式化到指定位置（如果是科学计数则是e；）G : 自动调整将整数、浮点数转换成 浮点型或科学计数法表示（超过6位数用科学计数法），并将其格式化到指定位置（如果是科学计数则是E；）% : 当字符串中存在格式化标志时，需要用 %%表示一个百分号;可选参数+       右对齐；正数前加正好，负数前加负号；-       左对齐；正数前无符号，负数前加负号；空格     右对齐；正数前加空格，负数前加负号；0       右对齐；正数前无符号，负数前加负号；用0填充空白处</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">##!/usr/bin/python3</span><br><span class="line"># -*- coding:utf-8 -*-</span><br><span class="line"># __author__ = David</span><br><span class="line"># email:</span><br><span class="line"></span><br><span class="line">name = input(&quot;input your name:&quot;)</span><br><span class="line">job = input(&quot;input your job:&quot;)</span><br><span class="line">age = input(&quot;input your age:&quot;)</span><br><span class="line">address = input(&quot;input your address:&quot;)</span><br><span class="line"></span><br><span class="line">info = &apos;&apos;&apos;</span><br><span class="line">------info of %s------</span><br><span class="line">Name:       %s</span><br><span class="line">Job:        %s</span><br><span class="line">Age:        %s</span><br><span class="line">Address     %s</span><br><span class="line">------ end      ------</span><br><span class="line">&apos;&apos;&apos; % (name, name, job, age, address)</span><br><span class="line">print(info)</span><br></pre></td></tr></table></figure><pre><code>字符串转数字</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int(&quot;22&quot;)</span><br><span class="line">float(&quot;22&quot;)</span><br></pre></td></tr></table></figure><hr><pre><code>列表创建</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3]</span><br><span class="line">a = list(1,2,3)</span><br></pre></td></tr></table></figure><pre><code>查找数值2</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.index(2)</span><br></pre></td></tr></table></figure><pre><code>重复值</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.count(2)</span><br><span class="line">```</span><br><span class="line">切边</span><br></pre></td></tr></table></figure><p>a[:]<br>a[:-1]<br>a[-5:]<br>a[::2]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">追加</span><br></pre></td></tr></table></figure></p><p>a.append(“iii”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">插入</span><br></pre></td></tr></table></figure></p><p>a.insert(0,’333’)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改</span><br></pre></td></tr></table></figure></p><p>a[2] = ‘jack’<br>a[0:2] = ‘jack’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">删除</span><br></pre></td></tr></table></figure></p><p>a.pop()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指定删除</span><br></pre></td></tr></table></figure></p><p>a.remove(2)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">全局删除</span><br></pre></td></tr></table></figure></p><p>del a[2:6]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">循环</span><br></pre></td></tr></table></figure></p><p>for i in a:<br>    print(i)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">排序</span><br><span class="line">不支持数字与字符混合排序</span><br></pre></td></tr></table></figure></p><p>a.sort()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">反转</span><br></pre></td></tr></table></figure></p><p>a.reverse()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">拼接</span><br></pre></td></tr></table></figure></p><p>a+list1<br>a.extend(list1)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">清空</span><br></pre></td></tr></table></figure></p><p>a.clear()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">浅拷贝(创建独立的列表值，不影响原列表值)</span><br></pre></td></tr></table></figure></p><p>b = a.copy()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enumerate枚举</span><br></pre></td></tr></table></figure></p><p>for i in enumerate(a):<br>    print(i)<br>for index,value in enumerate(a):<br>    print(index, value)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">深copy(内嵌列表)不建议使用，占内存</span><br></pre></td></tr></table></figure></p><p>import copy<br>b = copy.deepcopy(a)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 运算符</span><br><span class="line">* 算术运算</span><br><span class="line">&#123;% asset_img 算术运算.png  %&#125;</span><br><span class="line">/除法永远返回浮点型(python3)</span><br><span class="line">* 比较运算</span><br><span class="line">&#123;% asset_img 比较运算.png  %&#125;</span><br><span class="line">* 逻辑运算</span><br><span class="line">&#123;% asset_img 逻辑运算.png  %&#125;</span><br><span class="line">* 赋值运算</span><br><span class="line">&#123;% asset_img 赋值运算.png  %&#125;</span><br><span class="line">* 成员运算</span><br><span class="line">* 身份运算</span><br><span class="line">* 位运算</span><br><span class="line"># 流程控制</span><br><span class="line">* 单分支</span><br></pre></td></tr></table></figure></p><pre><code>if 条件    :    满足条件执行代码</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 双分支</span><br></pre></td></tr></table></figure><pre><code>if    条件:    满足条件执行代码else:    不满足条件执行代码</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 多分支</span><br></pre></td></tr></table></figure><pre><code>if    条件:    满足条件执行代码elif 条件:    满足条件执行代码else:    不满足条件执行代码</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* while循环</span><br><span class="line">* dead loop</span><br></pre></td></tr></table></figure><pre><code>while True:    执行代码</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* continue &amp; break</span><br><span class="line">&gt; break跳出循环</span><br><span class="line">continue执行下次循环</span><br><span class="line">* while else</span><br></pre></td></tr></table></figure><pre><code>#判断循环中间没有断开过while count &lt; 5:    if count = 3:        break    count++else:    print(&quot;循环全部执行&quot;)</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 查看变量在内存中的地址</span><br></pre></td></tr></table></figure><pre><code>a = 2print(id(a))</code></pre><p><code>`</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;变量variable&quot;&gt;&lt;a href=&quot;#变量variable&quot; class=&quot;headerlink&quot; title=&quot;变量variable&quot;&gt;&lt;/a&gt;变量variable&lt;/h1&gt;&lt;h2 id=&quot;变量的作用&quot;&gt;&lt;a href=&quot;#变量的作用&quot; class=&quot;he
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 基础" scheme="http://yoursite.com/tags/Python-%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>编译型语言和解释型语言</title>
+    <link href="http://yoursite.com/2019/03/20/%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80/"/>
+    <id>http://yoursite.com/2019/03/20/编译型语言和解释型语言/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-17T04:30:46.063Z</updated>
+    
+    <content type="html"><![CDATA[<p>众所周知，计算机底层只能识别（并执行）0、1序列的机器码，这表示所有的高级编程语言所编写的代码，最终都要以某种方式被转换成能被计算机识别的0、1序列机器码，方可被计算机接受并执行。这种将代码转换为机器码的方式可分为编译型和解释型这2类：</p><h1 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h1><h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2><p>把做好的源程序全部编译成二进制代码的可运行程序。然后，可直接运行这个程序。编译是指在应用源程序执行之前，就将程序源代码“翻译”成目标代码(机器语言)，因此其目标程序可以脱离其语言环境独立执行，使用比较方便、效率 较高。但应用程序一旦需要修改，必须先修改源代码，再重新编译生成新的目标文件(＊ .OBJ)才能执行，只有目标文件而没有源代码，修改很不方便。现在大多数的编程语言都是编译型的。编译程序将源程序翻译成目标程序后保存在另一个文件中，该目标程序可脱离编译程序直接在计算机上多次运行。大多数软件产品都是以目标程序形式发行给用户的，不仅便于直接运行，同时又使他人难于盗用其中的技术C、C++、Fortran、Visual Foxpro、Pascal、Delphi、Ada都是编译实现的。</p><h2 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h2><p>把做好的源程序翻译一句，然后执行一句，直至结束！解释型语言的实现中，翻译器并不产生目标机器代码，而是产生易于执行的中间代码，这种中间代码与机器代码是不同的，中间代码的解释是由软件支持的，不能直接使用硬件，软件解释器通常会导致执行效率较低。用解释型语言编写的程序是由另一个可以理解中间代码的解释程序执行的。与编译程序不同的是，解释程序的任务是逐一将源程序的语句解释成可执行的机器指令，不需要将源程序翻译成目标代码后再执行。释程序的优点是当语句出现语法错误时，可以立即引起程序员注意，而程序员在程序开发期间就能进行校正。对于解释型Basic语言，需要一个专门的解释器解释执行 Basic程序，每条语言只有在执行才被翻译。这种解释型语言每执行一次就翻译一次，因而效率低下。一般地，动态语言都是解释型的，如python、Tcl、Perl、Ruby、VBScript、 JavaScript等。</p><h2 id="混合型语言"><a href="#混合型语言" class="headerlink" title="混合型语言"></a>混合型语言</h2><p>Java很特殊，Java程序也需要编译，但是没有直接编译称为机器语言，而是编译称为字节码，然后在Java虚拟机上用解释方式执行字节码。Python 的也采用了类似Java的编译模式，先将Python程序编译成Python字节码，然后由一个专门的Python字节码解释器负责解释执行字节码。(Java虚拟机对字节码的执行相当于模拟一个cpu，而ruby1.8–在虚拟机还未出现前–是通过解释成语法树执行。)</p><h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><h2 id="编译型语言-1"><a href="#编译型语言-1" class="headerlink" title="编译型语言"></a>编译型语言</h2><ol><li>编译型语言最大的优势之一就是其执行速度。用C/C++编写的程序运行速度要比用Java编写的相同程序快30%-70%。</li><li>编译型程序比解释型程序消耗的内存更少。</li><li>不利的一面——编译器比解释器要难写得多。</li><li>编译器在调试程序时提供不了多少帮助——有多少次在你的C语言代码中遇到一个“空指针异常”时，需要花费好几个小时来明确错误到底在代码中的什么位置。</li><li>可执行的编译型代码要比相同的解释型代码大许多。例如，C/C++的.exe文件要比同样功能的Java的.class文件大很多。</li><li>编译型程序是面向特定平台的因而是平台依赖的。</li><li>编译型程序不支持代码中实现安全性——例如，一个编译型的程序可以访问内存的任何区域，并且可以对你的PC做它想做的任何事情（大部分病毒是使用编译型语言编写的</li><li>由于松散的安全性和平台依赖性，编译型语言不太适合开发因特网或者基于Web的应用。</li></ol><h2 id="解释型语言-1"><a href="#解释型语言-1" class="headerlink" title="解释型语言"></a>解释型语言</h2><ol><li>解释型语言提供了极佳的调试支持。一名Java程序员只需要几分钟就可以定位并修复一个“空指针异常”，因为Java运行环境不仅指明了异常的性质，而且给出了异常发生位置具体的行号和函数调用顺序（著名的堆栈跟踪信息）。这样的便利是编译型语言所无法提供的。</li><li>另一个优势是解释器比编译器容易实现</li><li>解释型语言最大的优势之一是其平台独立性</li><li>解释型语言也可以保证高度的安全性——这是互联网应用迫切需要的</li><li>中间语言代码的大小比编译型可执行代码小很多</li><li>平台独立性，以及严密的安全性是使解释型语言成为适合互联网和Web应用的理想语言的2个最重要的因素。</li><li>解释型语言存在一些严重的缺点。解释型应用占用更多的内存和CPU资源。这是由于，为了运行解释型语言编写的程序，相关的解释器必须首先运行。解释器是复杂的，智能的，大量消耗资源的程序并且它们会占用很多CPU周期和内存。</li><li>由于解释型应用的decode-fetch-execute（解码-抓取-执行）的周期，它们比编译型程序慢很多。</li><li>解释器也会做很多代码优化，运行时安全性检查；这些额外的步骤占用了更多的资源并进一步降低了应用的运行速度。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;众所周知，计算机底层只能识别（并执行）0、1序列的机器码，这表示所有的高级编程语言所编写的代码，最终都要以某种方式被转换成能被计算机识别的0、1序列机器码，方可被计算机接受并执行。这种将代码转换为机器码的方式可分为编译型和解释型这2类：&lt;/p&gt;
+&lt;h1 id=&quot;概念：&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="语言" scheme="http://yoursite.com/categories/%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 元组</title>
+    <link href="http://yoursite.com/2019/03/20/python%E5%85%83%E7%BB%84/"/>
+    <id>http://yoursite.com/2019/03/20/python元组/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T06:11:30.189Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>元组是有序的不可变</code></pre><h1 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1,2,3,4)[2:5]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;元组是有序的不可变
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;切片&quot;&gt;&lt;a href=&quot;#切片&quot; class=&quot;headerlink&quot; title=&quot;切片&quot;&gt;&lt;/a&gt;切片&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 元组" scheme="http://yoursite.com/tags/Python-%E5%85%83%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 字典函数</title>
+    <link href="http://yoursite.com/2019/03/20/python%E5%AD%97%E5%85%B8/"/>
+    <id>http://yoursite.com/2019/03/20/python字典/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T06:12:24.721Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>字典是键值对的数据类型,key不可以重复，必须是不可变类型，可hash， 字典是无序的。</code></pre><h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">info = &#123;</span><br><span class="line">‘name1’:&apos;tt&apos;,</span><br><span class="line">‘nmae2’:&apos;ttt&apos;</span><br><span class="line">‘david’：[24,&apos;beijing&apos;],</span><br><span class="line">&#125;</span><br><span class="line">info[&apos;david&apos;]</span><br></pre></td></tr></table></figure><h1 id="增加"><a href="#增加" class="headerlink" title="增加"></a>增加</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info[&apos;stu1&apos;]=&apos;cat&apos;</span><br></pre></td></tr></table></figure><h1 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#没有返回None</span><br><span class="line">info.get(&apos;stu1&apos;)</span><br><span class="line">#没有报错</span><br><span class="line">info[&apos;stu1&apos;]</span><br></pre></td></tr></table></figure><h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">info.pop(&apos;stu1&apos;)</span><br><span class="line">#随即删除</span><br><span class="line">info.popitem()</span><br></pre></td></tr></table></figure><h1 id="多级字典嵌套"><a href="#多级字典嵌套" class="headerlink" title="多级字典嵌套"></a>多级字典嵌套</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zoo = &#123;</span><br><span class="line">&quot;爬行馆&quot;:&#123;&quot;a1&quot;:&quot;lizard&quot;&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="获取键"><a href="#获取键" class="headerlink" title="获取键"></a>获取键</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">info.keys()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="获取值"><a href="#获取值" class="headerlink" title="获取值"></a>获取值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info.values()</span><br></pre></td></tr></table></figure><h1 id="获取items"><a href="#获取items" class="headerlink" title="获取items"></a>获取items</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info.items()</span><br></pre></td></tr></table></figure><h1 id="创建字典fromkeys"><a href="#创建字典fromkeys" class="headerlink" title="创建字典fromkeys"></a>创建字典fromkeys</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info.fromkeys([&apos;A&apos;,&apos;B&apos;,&apos;C&apos;])</span><br></pre></td></tr></table></figure><h1 id="更新字典"><a href="#更新字典" class="headerlink" title="更新字典"></a>更新字典</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dic2 = &#123;&quot;k1&quot;: &quot;v1111&quot;, &quot;a&quot;: &quot;b&quot;&#125;</span><br><span class="line">dic2.update(&#123;&quot;k1&quot;: &quot;v1111&quot;, &quot;a&quot;: &quot;b&quot;, &quot;k3&quot;: &quot;v3&quot;&#125;)</span><br><span class="line">print(&quot;Value : %s&quot; % dic2)</span><br></pre></td></tr></table></figure><h1 id="字典循环"><a href="#字典循环" class="headerlink" title="字典循环"></a>字典循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#高效</span><br><span class="line">for k in info:</span><br><span class="line">print(k,info[k])</span><br><span class="line">#低效</span><br><span class="line">for k,v in info.items():</span><br><span class="line">print(k,v)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;字典是键值对的数据类型,key不可以重复，必须是不可变类型，可hash， 字典是无序的。
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h1&gt;&lt;fig
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 字典" scheme="http://yoursite.com/tags/Python-%E5%AD%97%E5%85%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 字符串函数</title>
+    <link href="http://yoursite.com/2019/03/20/python%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <id>http://yoursite.com/2019/03/20/python字符串/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T06:11:30.184Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>字符串是有序的字符集合有序不可变</code></pre><h1 id="判断是否是数字"><a href="#判断是否是数字" class="headerlink" title="判断是否是数字"></a>判断是否是数字</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;3&apos;.isdigit()</span><br><span class="line">&apos;33.3&apos;.isdecimal()</span><br></pre></td></tr></table></figure><h1 id="全部小写"><a href="#全部小写" class="headerlink" title="全部小写"></a>全部小写</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;aB&apos;.casefold()</span><br></pre></td></tr></table></figure><h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;aB&apos;.find(&apos;o&apos;)</span><br></pre></td></tr></table></figure><h1 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &quot; hello &#123;name&#125;&quot;</span><br><span class="line">a.format(name=&apos;david&apos;)</span><br></pre></td></tr></table></figure><h1 id="返回索引"><a href="#返回索引" class="headerlink" title="返回索引"></a>返回索引</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &quot; hello world&quot;</span><br><span class="line">a.index(&apos;o&apos;,5,6)</span><br></pre></td></tr></table></figure><h1 id="合法变量"><a href="#合法变量" class="headerlink" title="合法变量"></a>合法变量</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &quot; hello&quot;</span><br><span class="line">a.isidentifier()</span><br></pre></td></tr></table></figure><h1 id="列表字符串拼接"><a href="#列表字符串拼接" class="headerlink" title="列表字符串拼接"></a>列表字符串拼接</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = [&apos;1&apos;,&apos;2&apos;,&apos;3&apos;]</span><br><span class="line">&apos;+&apos;.join(a)</span><br></pre></td></tr></table></figure><h1 id="居中"><a href="#居中" class="headerlink" title="居中"></a>居中</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &quot;hello&quot;</span><br><span class="line">a.center(20,&quot;*&quot;)</span><br></pre></td></tr></table></figure><h1 id="大小写"><a href="#大小写" class="headerlink" title="大小写"></a>大小写</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &quot;hello&quot;</span><br><span class="line">a.lower()</span><br><span class="line">a.upper()</span><br></pre></td></tr></table></figure><h1 id="去掉转义字符空格"><a href="#去掉转义字符空格" class="headerlink" title="去掉转义字符空格"></a>去掉转义字符空格</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &quot;hello /r/n&quot;</span><br><span class="line">a.strip()</span><br></pre></td></tr></table></figure><h1 id="maketrans-amp-translate"><a href="#maketrans-amp-translate" class="headerlink" title="maketrans&amp;translate"></a>maketrans&amp;translate</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = &quot;hello8888&quot;</span><br><span class="line">b = &quot;ddid##@@@&quot;</span><br><span class="line">table = str.maketrans(a,b)</span><br><span class="line">a.translate(table)</span><br></pre></td></tr></table></figure><h1 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &quot;hello&quot;</span><br><span class="line">a.replace(&apos;h&apos;,&apos;H&apos;)</span><br><span class="line">a.replace(&apos;l&apos;,&apos;o&apos;,2)</span><br></pre></td></tr></table></figure><h1 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &quot;hello&quot;</span><br><span class="line">a.split(&apos;l&apos;,1)</span><br><span class="line">a.rsplit(&apos;l&apos;,1)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;字符串是有序的字符集合
+有序
+不可变
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;判断是否是数字&quot;&gt;&lt;a href=&quot;#判断是否是数字&quot; class=&quot;headerlink&quot; title=&quot;判断是否是数字&quot;&gt;&lt;/a&gt;判断是否是数字&lt;/h1&gt;&lt;figure cl
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 字符串" scheme="http://yoursite.com/tags/Python-%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>PyCharm使用</title>
     <link href="http://yoursite.com/2019/03/20/pycharm-%E4%BD%BF%E7%94%A8%E7%A7%98%E7%B1%8D/"/>
     <id>http://yoursite.com/2019/03/20/pycharm-使用秘籍/</id>
     <published>2019-03-20T10:32:36.000Z</published>
-    <updated>2019-04-16T22:22:01.467Z</updated>
+    <updated>2019-04-17T02:55:47.545Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="PyCharm介绍"><a href="#PyCharm介绍" class="headerlink" title="PyCharm介绍"></a>PyCharm介绍</h1><p>PyCharm是一种Python IDE，带有一整套可以帮助用户在使用Pythhon语言开发时提高工作效率的工具，比如调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制等。此外该IDE提供用于支持Django和Flask等框架下的专业web开发功能。</p><h2 id="配置python解释器"><a href="#配置python解释器" class="headerlink" title="配置python解释器"></a>配置python解释器</h2><p>File-&gt;Settings<br><img src="/2019/03/20/pycharm-使用秘籍/设置.png"><br>Settings-&gt;Project-&gt;Project interpreter-&gt;add local<br><img src="/2019/03/20/pycharm-使用秘籍/解释器配置.png"></p><h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>复制ctrl+d<br>删除ctrl+e<br>切换行shift+enter<br>注释ctrl+shift+/<br>取消缩进 shift+tab<br>查找ctrl+f<br>替换ctrl+h</p><h2 id="PyCharm-IDE安装插件"><a href="#PyCharm-IDE安装插件" class="headerlink" title="PyCharm IDE安装插件"></a>PyCharm IDE安装插件</h2><p>file-&gt;settings-&gt;plugin</p><h2 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h2><p>file-&gt;settings-&gt;version control<br>发布到github<br><img src="/2019/03/20/pycharm-使用秘籍/githubshare.png"></p><h2 id="常用操作指南"><a href="#常用操作指南" class="headerlink" title="常用操作指南"></a>常用操作指南</h2><ul><li>tab转space<blockquote><p>Edit-&gt; Convert Indents</p></blockquote><h2 id="8、PEP8检测"><a href="#8、PEP8检测" class="headerlink" title="8、PEP8检测"></a>8、PEP8检测</h2></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="PyCharm介绍"><a href="#PyCharm介绍" class="headerlink" title="PyCharm介绍"></a>PyCharm介绍</h1><p>PyCharm是一种Python IDE，带有一整套可以帮助用户在使用Pythhon语言开发时提高工作效率的工具，比如调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制等。此外该IDE提供用于支持Django和Flask等框架下的专业web开发功能。</p><h2 id="配置python解释器"><a href="#配置python解释器" class="headerlink" title="配置python解释器"></a>配置python解释器</h2><p>File-&gt;Settings<br><img src="/2019/03/20/pycharm-使用秘籍/设置.png"><br>Settings-&gt;Project-&gt;Project interpreter-&gt;add local<br><img src="/2019/03/20/pycharm-使用秘籍/解释器配置.png"></p><h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><p>复制ctrl+d<br>删除ctrl+e<br>切换行shift+enter<br>注释ctrl+shift+/<br>取消缩进 shift+tab<br>查找ctrl+f<br>替换ctrl+h</p><h2 id="PyCharm-IDE安装插件"><a href="#PyCharm-IDE安装插件" class="headerlink" title="PyCharm IDE安装插件"></a>PyCharm IDE安装插件</h2><p>file-&gt;settings-&gt;plugin</p><h2 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h2><p>file-&gt;settings-&gt;version control<br>发布到github<br><img src="/2019/03/20/pycharm-使用秘籍/githubshare.png"></p><h2 id="常用操作指南"><a href="#常用操作指南" class="headerlink" title="常用操作指南"></a>常用操作指南</h2><ul><li>tab转space<blockquote><p>Edit-&gt; Convert Indents</p></blockquote></li><li>同屏显示两个文件<blockquote><p>Move right/ Move down</p></blockquote></li></ul><h2 id="PEP8检测"><a href="#PEP8检测" class="headerlink" title="PEP8检测"></a>PEP8检测</h2><ul><li>行尾注释<blockquote><p>空两格式#空一格+注释内容</p></blockquote></li><li>单独行注释<blockquote><p>#空一格+注释内容</p></blockquote></li><li>方法之间空两行</li></ul>]]></content>
     
     <summary type="html">
     
@@ -38,6 +196,140 @@
     
     
       <category term="PyCharm" scheme="http://yoursite.com/tags/PyCharm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python的两种注释方式</title>
+    <link href="http://yoursite.com/2019/03/20/python%E6%B3%A8%E9%87%8A/"/>
+    <id>http://yoursite.com/2019/03/20/python注释/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T06:11:30.168Z</updated>
+    
+    <content type="html"><![CDATA[<p>为程序添加注释可以用来解释程序某些部分的作用和功能，提高程序的可读性。除此之外，注释也是调试程序的重要方式。在某些时候，我们不希望编译、执行程序中的某些代码，这时就可以将这些代码注释掉。<br>Python 语言允许在任何地方插入空字符或注释，但不能插入到标识符和字符串中间。<br>Python 源代码的注释有两种形式，分别是单行注释和多行注释：</p><h1 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h1><p>Python 使用井号（＃）表示单行注释的开始，跟在“＃”号后面直到这行结束为止的代码都将被解释器忽略。单行注释就是在程序中注释一行代码，在Python 程序中将井号（＃）放在需要注释的内容之前就可以了。</p><h1 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h1><p>多行注释是指一次性将程序中的多行代码注释掉，在 Python 程序中使用三个单引号或三个双引号将注释的内容括起来。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#这是一行简单的注释</span><br><span class="line">print (&quot;Hello World!&quot;)</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">这里面的内容全部是多行注释</span><br><span class="line">Python语言真的很简单</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"># print(&quot;这行代码被注释了，将不会被编译、执行！&quot;)</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">这是用三个双引号括起来的多行注释</span><br><span class="line">Python 同样是允许的</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;为程序添加注释可以用来解释程序某些部分的作用和功能，提高程序的可读性。除此之外，注释也是调试程序的重要方式。在某些时候，我们不希望编译、执行程序中的某些代码，这时就可以将这些代码注释掉。&lt;br&gt;Python 语言允许在任何地方插入空字符或注释，但不能插入到标识符和字符串中间
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 注释" scheme="http://yoursite.com/tags/Python-%E6%B3%A8%E9%87%8A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 数值转换</title>
+    <link href="http://yoursite.com/2019/03/20/python%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://yoursite.com/2019/03/20/python数值转换/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T06:11:30.173Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="十进制转二进制："><a href="#十进制转二进制：" class="headerlink" title="十进制转二进制："></a>十进制转二进制：</h1><pre><code>bin(10)</code></pre><h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2><p>把做好的源程序全部编译成二进制代码的可运行程序。然后，可直接运行这个程序。编译是指在应用源程序执行之前，就将程序源代码“翻译”成目标代码(机器语言)，因此其目标程序可以脱离其语言环境独立执行，使用比较方便、效率 较高。但应用程序一旦需要修改，必须先修改源代码，再重新编译生成新的目标文件(＊ .OBJ)才能执行，只有目标文件而没有源代码，修改很不方便。现在大多数的编程语言都是编译型的。编译程序将源程序翻译成目标程序后保存在另一个文件中，该目标程序可脱离编译程序直接在计算机上多次运行。大多数软件产品都是以目标程序形式发行给用户的，不仅便于直接运行，同时又使他人难于盗用其中的技术C、C++、Fortran、Visual Foxpro、Pascal、Delphi、Ada都是编译实现的。</p><h2 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h2><p>把做好的源程序翻译一句，然后执行一句，直至结束！解释型语言的实现中，翻译器并不产生目标机器代码，而是产生易于执行的中间代码，这种中间代码与机器代码是不同的，中间代码的解释是由软件支持的，不能直接使用硬件，软件解释器通常会导致执行效率较低。用解释型语言编写的程序是由另一个可以理解中间代码的解释程序执行的。与编译程序不同的是，解释程序的任务是逐一将源程序的语句解释成可执行的机器指令，不需要将源程序翻译成目标代码后再执行。释程序的优点是当语句出现语法错误时，可以立即引起程序员注意，而程序员在程序开发期间就能进行校正。对于解释型Basic语言，需要一个专门的解释器解释执行 Basic程序，每条语言只有在执行才被翻译。这种解释型语言每执行一次就翻译一次，因而效率低下。一般地，动态语言都是解释型的，如python、Tcl、Perl、Ruby、VBScript、 JavaScript等。</p><h2 id="混合型语言"><a href="#混合型语言" class="headerlink" title="混合型语言"></a>混合型语言</h2><p>Java很特殊，Java程序也需要编译，但是没有直接编译称为机器语言，而是编译称为字节码，然后在Java虚拟机上用解释方式执行字节码。Python 的也采用了类似Java的编译模式，先将Python程序编译成Python字节码，然后由一个专门的Python字节码解释器负责解释执行字节码。(Java虚拟机对字节码的执行相当于模拟一个cpu，而ruby1.8–在虚拟机还未出现前–是通过解释成语法树执行。)</p><h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><h2 id="编译型语言-1"><a href="#编译型语言-1" class="headerlink" title="编译型语言"></a>编译型语言</h2><ol><li>编译型语言最大的优势之一就是其执行速度。用C/C++编写的程序运行速度要比用Java编写的相同程序快30%-70%。</li><li>编译型程序比解释型程序消耗的内存更少。</li><li>不利的一面——编译器比解释器要难写得多。</li><li>编译器在调试程序时提供不了多少帮助——有多少次在你的C语言代码中遇到一个“空指针异常”时，需要花费好几个小时来明确错误到底在代码中的什么位置。</li><li>可执行的编译型代码要比相同的解释型代码大许多。例如，C/C++的.exe文件要比同样功能的Java的.class文件大很多。</li><li>编译型程序是面向特定平台的因而是平台依赖的。</li><li>编译型程序不支持代码中实现安全性——例如，一个编译型的程序可以访问内存的任何区域，并且可以对你的PC做它想做的任何事情（大部分病毒是使用编译型语言编写的</li><li>由于松散的安全性和平台依赖性，编译型语言不太适合开发因特网或者基于Web的应用。</li></ol><h2 id="解释型语言-1"><a href="#解释型语言-1" class="headerlink" title="解释型语言"></a>解释型语言</h2><ol><li>解释型语言提供了极佳的调试支持。一名Java程序员只需要几分钟就可以定位并修复一个“空指针异常”，因为Java运行环境不仅指明了异常的性质，而且给出了异常发生位置具体的行号和函数调用顺序（著名的堆栈跟踪信息）。这样的便利是编译型语言所无法提供的。</li><li>另一个优势是解释器比编译器容易实现</li><li>解释型语言最大的优势之一是其平台独立性</li><li>解释型语言也可以保证高度的安全性——这是互联网应用迫切需要的</li><li>中间语言代码的大小比编译型可执行代码小很多</li><li>平台独立性，以及严密的安全性是使解释型语言成为适合互联网和Web应用的理想语言的2个最重要的因素。</li><li>解释型语言存在一些严重的缺点。解释型应用占用更多的内存和CPU资源。这是由于，为了运行解释型语言编写的程序，相关的解释器必须首先运行。解释器是复杂的，智能的，大量消耗资源的程序并且它们会占用很多CPU周期和内存。</li><li>由于解释型应用的decode-fetch-execute（解码-抓取-执行）的周期，它们比编译型程序慢很多。</li><li>解释器也会做很多代码优化，运行时安全性检查；这些额外的步骤占用了更多的资源并进一步降低了应用的运行速度。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;十进制转二进制：&quot;&gt;&lt;a href=&quot;#十进制转二进制：&quot; class=&quot;headerlink&quot; title=&quot;十进制转二进制：&quot;&gt;&lt;/a&gt;十进制转二进制：&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;bin(10)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;编译型语言&quot;&gt;&lt;a
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 数值转换" scheme="http://yoursite.com/tags/Python-%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 集合函数</title>
+    <link href="http://yoursite.com/2019/03/20/python%E9%9B%86%E5%90%88/"/>
+    <id>http://yoursite.com/2019/03/20/python集合/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T06:57:23.813Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>定义：1. 不同元素组2. 无序3. 集合中的元素必须是不可变类型</code></pre><h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;1&#125;</span><br></pre></td></tr></table></figure><h1 id="列表元组转集合"><a href="#列表元组转集合" class="headerlink" title="列表元组转集合"></a>列表元组转集合</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">li = [1,2,3,2,3]</span><br><span class="line">s = set(li)</span><br></pre></td></tr></table></figure><h1 id="增加元素"><a href="#增加元素" class="headerlink" title="增加元素"></a>增加元素</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.add(2)</span><br></pre></td></tr></table></figure><h1 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#随机删除</span><br><span class="line">s.pop()</span><br><span class="line">#指定删除</span><br><span class="line">s.remove(2)</span><br><span class="line">#无报错删除</span><br><span class="line">s.remove(6)</span><br></pre></td></tr></table></figure><h1 id="更新多个值"><a href="#更新多个值" class="headerlink" title="更新多个值"></a>更新多个值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.update([1,2,3,3,])</span><br></pre></td></tr></table></figure><h1 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1=&#123;9&#125;</span><br><span class="line">s.intersection(s1)</span><br><span class="line">s&amp;s1</span><br></pre></td></tr></table></figure><h1 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1=&#123;9&#125;</span><br><span class="line">s.difference(s1)</span><br><span class="line">s - s1</span><br></pre></td></tr></table></figure><h1 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.union(s1)</span><br><span class="line">s | s1</span><br></pre></td></tr></table></figure><h1 id="对称差集，两个集合中不重复的元素"><a href="#对称差集，两个集合中不重复的元素" class="headerlink" title="对称差集，两个集合中不重复的元素"></a>对称差集，两个集合中不重复的元素</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.symmetric_difference(s1)</span><br><span class="line">s^s1</span><br></pre></td></tr></table></figure><h1 id="超级子集"><a href="#超级子集" class="headerlink" title="超级子集"></a>超级子集</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s.issubset(s1)</span><br><span class="line">s.issuperset(s1)</span><br></pre></td></tr></table></figure><h1 id="判断相交"><a href="#判断相交" class="headerlink" title="判断相交"></a>判断相交</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.isdisjoint(s1)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;定义：
+1. 不同元素组
+2. 无序
+3. 集合中的元素必须是不可变类型
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h1&gt;&lt;figure clas
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 集合" scheme="http://yoursite.com/tags/Python-%E9%9B%86%E5%90%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 集合函数</title>
+    <link href="http://yoursite.com/2019/03/20/python%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/"/>
+    <id>http://yoursite.com/2019/03/20/python字符编码/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T07:51:34.406Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>python3默认的是unicode编码，python2不会自动把文件编码转换为unicode存在内存里，需要转码：py3 文件默认编码 utf-8    字符串 编码是 unicodepy2 文件默认编码是 ascii    字符串 编码 默认是ascii    如果文件头声明了gbk, 那字符串的编码就是gbk    unicode 单独类型</code></pre><h1 id="decode"><a href="#decode" class="headerlink" title="decode"></a>decode</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#python2</span><br><span class="line">s = &quot;你好&quot;</span><br><span class="line">s1 = s.decode(&apos;utf-8&apos;)</span><br><span class="line">print(type(s1))</span><br></pre></td></tr></table></figure><h1 id="encode"><a href="#encode" class="headerlink" title="encode"></a>encode</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#python2</span><br><span class="line">s2 = s.encode(&apos;GBK&apos;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;pre&gt;&lt;code&gt;python3默认的是unicode编码，python2不会自动把文件编码转换为unicode存在内存里，需要转码：
+py3 文件默认编码 utf-8
+    字符串 编码是 unicode
+py2 文件默认编码是 ascii
+    字符串 编码 默认是a
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 字符编码" scheme="http://yoursite.com/tags/Python-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python 文件头注释</title>
+    <link href="http://yoursite.com/2019/03/20/python%E6%96%87%E4%BB%B6%E5%A4%B4%E6%B3%A8%E9%87%8A/"/>
+    <id>http://yoursite.com/2019/03/20/python文件头注释/</id>
+    <published>2019-03-20T10:32:36.000Z</published>
+    <updated>2019-04-18T09:24:03.309Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="指定解释器路径"><a href="#指定解释器路径" class="headerlink" title="指定解释器路径"></a>指定解释器路径</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br></pre></td></tr></table></figure><p>上面这种方式，指定了必须用/usr/bin/python这个解释器来解释本python文件</p><h1 id="指定系统环境变量设定的解释器路径"><a href="#指定系统环境变量设定的解释器路径" class="headerlink" title="指定系统环境变量设定的解释器路径"></a>指定系统环境变量设定的解释器路径</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br></pre></td></tr></table></figure><p>而这种方式，指定了使用linux环境变量$PATH里某个路径下名为python的解释器来解释本python文件。<br>（注意到开头/usr/bin/env是linux里读写环境变量的一个程序）<br>如果环境变量$PATH的内容是/usr/bin:/usr/local/bin:/usr/local/python3/bin，那么上面的注释就意味着会依序寻找这些路径： </p><ol><li>/usr/bin/python </li><li>/usr/local/bin/python </li><li>/usr/local/python3/bin/python<br>第一个存在的路径，就会作为python解释器使用。 </li></ol><h1 id="标明本py文件的编码类型"><a href="#标明本py文件的编码类型" class="headerlink" title="标明本py文件的编码类型"></a>标明本py文件的编码类型</h1><p>文本文件保存在硬盘上时，是需要按照一定编码规则来保存的。比如GBK、UTF-8之类。而文本编辑器、阅读器、浏览器打开硬盘上的文本文件时，需要知道这个文本文件的编码规则。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br></pre></td></tr></table></figure></p><p>例如下面这段代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = &apos;北京&apos;</span><br><span class="line">s.encode(&apos;utf-8&apos;)</span><br><span class="line">s.encode(&apos;gbk&apos;)</span><br></pre></td></tr></table></figure></p><table><thead><tr><th>编码</th><th>字节流</th></tr></thead><tbody><tr><td>utf-8</td><td>b’\xe5\x8c\x97\xe4\xba\xac’</td></tr><tr><td>gbk</td><td>b’\xb1\xb1\xbe\xa9’</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;指定解释器路径&quot;&gt;&lt;a href=&quot;#指定解释器路径&quot; class=&quot;headerlink&quot; title=&quot;指定解释器路径&quot;&gt;&lt;/a&gt;指定解释器路径&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Python 文件头注释" scheme="http://yoursite.com/tags/Python-%E6%96%87%E4%BB%B6%E5%A4%B4%E6%B3%A8%E9%87%8A/"/>
     
   </entry>
   
