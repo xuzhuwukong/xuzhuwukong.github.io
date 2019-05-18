@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="python3默认的是unicode编码，python2不会自动把文件编码转换为unicode存在内存里，需要转码： py3 文件默认编码 utf-8     字符串 编码是 unicode py2 文件默认编码是 ascii     字符串 编码 默认是ascii     如果文件头声明了gbk, 那字符串的编码就是gbk     unicode 单独类型 decode1234#python2s">
-<meta name="keywords" content="Python 字符编码">
+  <meta name="description" content="字符集与字符编码 ascii ISO-8859-1 通常叫 做Latin-1，向下兼容ASCII，此字符集支持部分于欧洲使用的语言 GB2312/GBK 这就是汉字的国标码，专门用来表示汉字，是双字节编码，而英文字母和iso8859-1一致（兼容iso8859-1编码）。其中gbk编码能够用来同时表示繁体字和简体字，而gb2312只能表示简体字，gbk是兼容gb2312编码的。 unicode 万">
+<meta name="keywords" content="Python,字符编码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python 集合函数">
+<meta property="og:title" content="python 字符编码">
 <meta property="og:url" content="http://yoursite.com/2019/03/20/python字符编码/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="python3默认的是unicode编码，python2不会自动把文件编码转换为unicode存在内存里，需要转码： py3 文件默认编码 utf-8     字符串 编码是 unicode py2 文件默认编码是 ascii     字符串 编码 默认是ascii     如果文件头声明了gbk, 那字符串的编码就是gbk     unicode 单独类型 decode1234#python2s">
+<meta property="og:description" content="字符集与字符编码 ascii ISO-8859-1 通常叫 做Latin-1，向下兼容ASCII，此字符集支持部分于欧洲使用的语言 GB2312/GBK 这就是汉字的国标码，专门用来表示汉字，是双字节编码，而英文字母和iso8859-1一致（兼容iso8859-1编码）。其中gbk编码能够用来同时表示繁体字和简体字，而gb2312只能表示简体字，gbk是兼容gb2312编码的。 unicode 万">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-18T07:51:34.406Z">
+<meta property="og:updated_time" content="2019-04-30T02:50:36.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python 集合函数">
-<meta name="twitter:description" content="python3默认的是unicode编码，python2不会自动把文件编码转换为unicode存在内存里，需要转码： py3 文件默认编码 utf-8     字符串 编码是 unicode py2 文件默认编码是 ascii     字符串 编码 默认是ascii     如果文件头声明了gbk, 那字符串的编码就是gbk     unicode 单独类型 decode1234#python2s">
+<meta name="twitter:title" content="python 字符编码">
+<meta name="twitter:description" content="字符集与字符编码 ascii ISO-8859-1 通常叫 做Latin-1，向下兼容ASCII，此字符集支持部分于欧洲使用的语言 GB2312/GBK 这就是汉字的国标码，专门用来表示汉字，是双字节编码，而英文字母和iso8859-1一致（兼容iso8859-1编码）。其中gbk编码能够用来同时表示繁体字和简体字，而gb2312只能表示简体字，gbk是兼容gb2312编码的。 unicode 万">
 
 
 
@@ -130,7 +130,7 @@
   };
 </script>
 
-  <title>python 集合函数 | Hexo</title>
+  <title>python 字符编码 | Hexo</title>
   
 
 
@@ -392,7 +392,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python 集合函数
+          <h1 class="post-title" itemprop="name headline">python 字符编码
 
               
             
@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-18 15:51:34" itemprop="dateModified" datetime="2019-04-18T15:51:34+08:00">2019-04-18</time>
+                <time title="修改时间：2019-04-30 10:50:36" itemprop="dateModified" datetime="2019-04-30T10:50:36+08:00">2019-04-30</time>
               
             
           </span>
@@ -453,6 +453,13 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python/字符编码/" itemprop="url" rel="index"><span itemprop="name">字符编码</span></a></span>
 
                 
                 
@@ -494,15 +501,27 @@
       
 
       
-        <pre><code>python3默认的是unicode编码，python2不会自动把文件编码转换为unicode存在内存里，需要转码：
+        <h1 id="字符集与字符编码"><a href="#字符集与字符编码" class="headerlink" title="字符集与字符编码"></a>字符集与字符编码</h1><ul>
+<li>ascii</li>
+<li>ISO-8859-1 通常叫 做Latin-1，向下兼容ASCII，此字符集支持部分于欧洲使用的语言</li>
+<li>GB2312/GBK 这就是汉字的国标码，专门用来表示汉字，是双字节编码，而英文字母和iso8859-1一致（兼容iso8859-1编码）。其中gbk编码能够用来同时表示繁体字和简体字，而gb2312只能表示简体字，gbk是兼容gb2312编码的。</li>
+<li>unicode 万国码</li>
+<li>cp936 windows中文默认的编码</li>
+<li>utf-8 linux默认的编码<br>Unicode也是一种字符编码方法，不过它是由国际组织设计，可以容纳全世界所有语言文字的编码方案。Unicode的学名是”Universal Multiple-Octet Coded Character Set”，简称为UCS。UCS可以看作是”Unicode Character Set”的缩写。也就是说,采用这种编码方式后,世界上所有的语言字符都有一个UNICODE编码(一个数字).<br>UNICODE虽然为所有语言虽有字符都编了一个号,但是它并未规定如何存储,传输这些UNICODE字符,例如对于”中a”,可以采用UNICODE编码来存储,这样它将占用4个字节,但其实字符”a”用一个字节就可以表示,字符”中”才需要两个字节表示,这样可以节省50%的空间,呵呵,如果在考虑到大字节序,小字节序等等,这样又可以产生不少编码变种,例如UTF-8,UTF-16等等,只要软件能够识别它们就可以了.</li>
+</ul>
+<p>计算机采用UNICODE之后,内存中并不存放UNICODE字符的编码, 而是存放字符在UNICODE字符集中的序号(如果是ANSI字符,它们的序号和UNICODE编码相同).</p>
+<pre><code>python3默认的是unicode编码，python2不会自动把文件编码转换为unicode存在内存里，需要转码：
 py3 文件默认编码 utf-8
     字符串 编码是 unicode
 py2 文件默认编码是 ascii
     字符串 编码 默认是ascii
     如果文件头声明了gbk, 那字符串的编码就是gbk
     unicode 单独类型
+sys.getdefaultencoding()来获取默认编码
 </code></pre><h1 id="decode"><a href="#decode" class="headerlink" title="decode"></a>decode</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#python2</span><br><span class="line">s = &quot;你好&quot;</span><br><span class="line">s1 = s.decode(&apos;utf-8&apos;)</span><br><span class="line">print(type(s1))</span><br></pre></td></tr></table></figure>
 <h1 id="encode"><a href="#encode" class="headerlink" title="encode"></a>encode</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#python2</span><br><span class="line">s2 = s.encode(&apos;GBK&apos;)</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>[字符集与编码两者关系:] (<a href="https://www.cnblogs.com/notbecoder/p/4840783.html" target="_blank" rel="noopener">https://www.cnblogs.com/notbecoder/p/4840783.html</a>)<br>[python2-3编码:] (<a href="https://blog.csdn.net/lzy98/article/details/83246222" target="_blank" rel="noopener">https://blog.csdn.net/lzy98/article/details/83246222</a>)</p>
+
       
     </div>
 
@@ -525,7 +544,9 @@ py2 文件默认编码是 ascii
       
         <div class="post-tags">
           
-            <a href="/tags/Python-字符编码/" rel="tag"># Python 字符编码</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/字符编码/" rel="tag"># 字符编码</a>
           
         </div>
       
@@ -559,8 +580,8 @@ py2 文件默认编码是 ascii
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/20/python文件头注释/" rel="next" title="python 文件头注释">
-                <i class="fa fa-chevron-left"></i> python 文件头注释
+              <a href="/2019/03/20/python字符串/" rel="next" title="python 字符串函数">
+                <i class="fa fa-chevron-left"></i> python 字符串函数
               </a>
             
           </div>
@@ -569,8 +590,8 @@ py2 文件默认编码是 ascii
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/20/python集合/" rel="prev" title="python 集合函数">
-                python 集合函数 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/20/python-基础/" rel="prev" title="3小时学习Python基础">
+                3小时学习Python基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -640,7 +661,7 @@ py2 文件默认编码是 ascii
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -665,7 +686,19 @@ py2 文件默认编码是 ascii
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -706,7 +739,49 @@ py2 文件默认编码是 ascii
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -765,7 +840,7 @@ py2 文件默认编码是 ascii
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#decode"><span class="nav-number">1.</span> <span class="nav-text">decode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#encode"><span class="nav-number">2.</span> <span class="nav-text">encode</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符集与字符编码"><span class="nav-number">1.</span> <span class="nav-text">字符集与字符编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#decode"><span class="nav-number">2.</span> <span class="nav-text">decode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#encode"><span class="nav-number">3.</span> <span class="nav-text">encode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
