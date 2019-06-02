@@ -108,10 +108,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="子线程强制终止子线程的强制性终止是我们实际应用时经常需要用到的，然而python官方并没有给出相关的函数来处理这种情况。http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python1234567891011121314151617def _async_raise(tid, exctype)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-19T15:41:20.698Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/18/python-线程/协程.jpg">
+<meta property="og:updated_time" content="2019-05-28T16:17:39.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python 线程">
 <meta name="twitter:description" content="子线程强制终止子线程的强制性终止是我们实际应用时经常需要用到的，然而python官方并没有给出相关的函数来处理这种情况。http://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread-in-python1234567891011121314151617def _async_raise(tid, exctype)">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/18/python-线程/协程.jpg">
 
 
 
@@ -435,7 +437,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-19 23:41:20" itemprop="dateModified" datetime="2019-05-19T23:41:20+08:00">2019-05-19</time>
+                <time title="修改时间：2019-05-29 00:17:39" itemprop="dateModified" datetime="2019-05-29T00:17:39+08:00">2019-05-29</time>
               
             
           </span>
@@ -506,7 +508,16 @@ Changed in version 2.7: Previously, the method always returned None.
 2.7版本以前, 这个方法总会返回None.
 </code></pre><p>利用wait的阻塞机制, 就能够实现暂停和恢复了, 再配合循环判断标识位, 就能实现退出了, 下面是代码示例:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import threading</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Job(threading.Thread):</span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        super(Job, self).__init__(*args, **kwargs)</span><br><span class="line">        self.__flag = threading.Event()  # 用于暂停线程的标识</span><br><span class="line">        self.__flag.set()  # 设置为True</span><br><span class="line">        self.__running = threading.Event()  # 用于停止线程的标识</span><br><span class="line">        self.__running.set()  # 将running设置为True</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        while self.__running.isSet():</span><br><span class="line">            self.__flag.wait()  # 为True时立即返回, 为False时阻塞直到内部的标识位为True后返回</span><br><span class="line">            print(time.time())</span><br><span class="line">            time.sleep(1)</span><br><span class="line"></span><br><span class="line">    def pause(self):</span><br><span class="line">        self.__flag.clear()  # 设置为False, 让线程阻塞</span><br><span class="line"></span><br><span class="line">    def resume(self):</span><br><span class="line">        self.__flag.set()  # 设置为True, 让线程停止阻塞</span><br><span class="line"></span><br><span class="line">    def stop(self):</span><br><span class="line">        self.__flag.set()  # 将线程从暂停状态恢复, 如何已经暂停的话</span><br><span class="line">        self.__running.clear()  # 设置为False</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a.start()</span><br><span class="line">time.sleep(3)</span><br><span class="line">a.pause()</span><br><span class="line">time.sleep(3)</span><br><span class="line">a.resume()</span><br><span class="line">time.sleep(3)</span><br><span class="line">a.pause()</span><br><span class="line">time.sleep(2)</span><br><span class="line">a.stop()</span><br></pre></td></tr></table></figure>
-
+<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>Callback早就有Twisted，新生代也有Tornado，Coroutine有Gevent，Actor有Pulsar，VM方面要稳妥CPython，要性能PYPY，要并发Stackless，AIO神马的的选择太多。cyclone<br>在Python中，一个异步的函数我们通常叫它协程。之前我们在讲解yield的时候也已经讲过yield语法在协程中的基本使用了，这次同样是协程，但却是不同的语法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#在Python 3.4中, 创建一个协程我们用asyncio.coroutine装饰器:</span><br><span class="line">async def double(x):</span><br><span class="line">    return x * 2</span><br><span class="line"></span><br><span class="line"># 这是个协程对象</span><br><span class="line">&gt;&gt;&gt; double(6)</span><br><span class="line">&gt;&gt;&gt;&lt;coroutine object double at 0x115b59d58&gt;</span><br><span class="line"></span><br><span class="line"># 既然是协程，我们像之前yield协程那样，预激活一下(注意这里用next(double(6)预激活会报错)</span><br><span class="line">&gt;&gt;&gt; double(6).send(None)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">StopIteration: 12</span><br><span class="line"># 好像差不多。</span><br></pre></td></tr></table></figure></p>
+<h2 id="asyncio的几个重要结构"><a href="#asyncio的几个重要结构" class="headerlink" title="asyncio的几个重要结构"></a>asyncio的几个重要结构</h2><blockquote>
+<p>event loop:<br>    An event loop essentially manages and distributes the execution of different tasks. It registers them and handles distributing the flow of control between them.</p>
+</blockquote>
+<blockquote>
+<p>Coroutines<br>    Coroutines are special functions that work similarly Python generators that on await they release the flow of control back to the event loop. A coroutine needs to be scheduled to run using the event loop, to do this we create a Task, which is a type of Future.<br>Futures：<br>    Futures are objects that represent the result of a task that may or may not have been executed. This result may be an exception.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">import asyncio</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def tic():</span><br><span class="line">    return &apos;at %1.1f seconds&apos; % (time.time() - start)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">async def gr1():</span><br><span class="line">    # Busy waits for a second, but we don&apos;t want to stick around...</span><br><span class="line">    print(&apos;gr1 started work: &#123;&#125;&apos;.format(tic()))</span><br><span class="line">    # 暂停两秒，但不阻塞时间循环，下同</span><br><span class="line">    await asyncio.sleep(2)</span><br><span class="line">    print(&apos;gr1 ended work: &#123;&#125;&apos;.format(tic()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">async def gr2():</span><br><span class="line">    # Busy waits for a second, but we don&apos;t want to stick around...</span><br><span class="line">    print(&apos;gr2 started work: &#123;&#125;&apos;.format(tic()))</span><br><span class="line">    await asyncio.sleep(2)</span><br><span class="line">    print(&apos;gr2 Ended work: &#123;&#125;&apos;.format(tic()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">async def gr3():</span><br><span class="line">    print(&quot;Let&apos;s do some stuff while the coroutines are blocked, &#123;&#125;&quot;.format(tic()))</span><br><span class="line">    await asyncio.sleep(1)</span><br><span class="line">    print(&quot;Done!&quot;)</span><br><span class="line"></span><br><span class="line"># 事件循环</span><br><span class="line">ioloop = asyncio.get_event_loop()</span><br><span class="line"></span><br><span class="line"># tasks中也可以使用asyncio.ensure_future(gr1())..</span><br><span class="line">tasks = [</span><br><span class="line">    ioloop.create_task(gr1()),</span><br><span class="line">    ioloop.create_task(gr2()),</span><br><span class="line">    ioloop.create_task(gr3())</span><br><span class="line">]</span><br><span class="line">ioloop.run_until_complete(asyncio.wait(tasks))</span><br><span class="line">ioloop.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">output：</span><br><span class="line">    gr1 started work: at 0.0 seconds</span><br><span class="line">    gr2 started work: at 0.0 seconds</span><br><span class="line">    Let&apos;s do some stuff while the coroutines are blocked, at 0.0 seconds</span><br><span class="line">    Done!</span><br><span class="line">    gr2 Ended work: at 2.0 seconds</span><br><span class="line">    gr1 ended work: at 2.0 seconds</span><br></pre></td></tr></table></figure>
+<p>event loop 流程图</p>
+<img src="/2019/05/18/python-线程/协程.jpg">
       
     </div>
 
@@ -563,8 +574,8 @@ Changed in version 2.7: Previously, the method always returned None.
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/18/python-网络通信/" rel="next" title="python 网络通信">
-                <i class="fa fa-chevron-left"></i> python 网络通信
+              <a href="/2019/05/18/python-常用模块psutil/" rel="next" title="python pstuil">
+                <i class="fa fa-chevron-left"></i> python pstuil
               </a>
             
           </div>
@@ -573,8 +584,8 @@ Changed in version 2.7: Previously, the method always returned None.
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/18/python-常用模块psutil/" rel="prev" title="python pstuil">
-                python pstuil <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/18/python-网络通信/" rel="prev" title="python 网络通信">
+                python 网络通信 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -644,7 +655,7 @@ Changed in version 2.7: Previously, the method always returned None.
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -821,7 +832,7 @@ Changed in version 2.7: Previously, the method always returned None.
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子线程强制终止"><span class="nav-number">1.</span> <span class="nav-text">子线程强制终止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的暂停-恢复-退出"><span class="nav-number">2.</span> <span class="nav-text">线程的暂停, 恢复, 退出</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#子线程强制终止"><span class="nav-number">1.</span> <span class="nav-text">子线程强制终止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的暂停-恢复-退出"><span class="nav-number">2.</span> <span class="nav-text">线程的暂停, 恢复, 退出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协程"><span class="nav-number">3.</span> <span class="nav-text">协程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#asyncio的几个重要结构"><span class="nav-number">3.1.</span> <span class="nav-text">asyncio的几个重要结构</span></a></li></ol></li></ol></div>
             
 
           </div>
