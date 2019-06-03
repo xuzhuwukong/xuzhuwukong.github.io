@@ -1890,7 +1890,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #75aa06;
+  background: #4bff41;
 }
 .links-of-blogroll {
   margin-top: 10px;
@@ -2214,6 +2214,13 @@ pre .javascript .function {
   padding: 0 10px 0 14px;
   border: 1px solid #555;
   border-radius: 4px;
+}
+.has-jax {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+li {
+  list-style-position: inside !important;
 }
 .page-archive .archive-page-counter {
   position: relative;
