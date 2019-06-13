@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python 类和对象]]></title>
+    <url>%2F2019%2F05%2F20%2Fpython-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%2F</url>
+    <content type="text"><![CDATA[面向对象面向过程，流程化，设计简单，不容易扩展，扩展需要改动大，比如登录接口，用户，密码，增加email字段面向对象，对象是一个实例，有属性，特征，有方法。比如孙悟空，属性，72变。优点，扩展性强。缺点，编程复杂度高，过度设计。应用于用户需求经常变化，经常改参数，企业内部应用，办公系统。 类和对象站在不同的角度，得到不同的分类. class Student(object): school=&apos;school&apos; #数据属性 def learn(self): #函数属性 print(&quot;is learning&quot;) 查看print(Student.__dict__) # 查看类的名称空间 print(Student.__dict__[&apos;school&apos;]) print(Student.school) 增加Student.country = &quot;China&quot; 删除del 改Student.school = &apos;School&apos; 创造对象stu1 = Student() 构造方法init 和 析构方法del __init__个性化定制属性,独有特征 def __init__(self,name,age): self.name = name self.age = age 调用过程，先产生一个空对象，stu1 调用__init__方法，__init__(stu1,name,age) 属性查找Stuendt.learn(stu1) 对象---》 类 ---》父类 不会到全局去找，没找到报错 装饰器绑定方法和非绑定方法封装继承和派生多态和多态性组合抽象类反射内置方法new、initnew方法是真正的类构造方法，用于产生实例化对象（空属性）。重写new方法可以控制对象的产生过程。init方法是初始化方法，负责对实例化对象进行属性值初始化，此方法必须返回None，new方法必须返回一个对象。重写init方法可以控制对象的初始化过程。123456789101112131415161718# 使用new来处理单例模式class Student: __instance = None def __new__(cls, *args, **kwargs): if not cls.__instance: cls.__instance = object.__new__(cls) return cls.__instance def sleep(self): print(&apos;sleeping...&apos;)stu1 = Student()stu2 = Student()print(id(stu1), id(stu2)) # 两者输出相同print(stu1 is stu2) # True str、repr两者的目的都是为了显式的显示对象的一些必要信息，方便查看和调试。str被print默认调用，repr被控制台输出时默认调用。即，使用str控制用户展示，使用repr控制调试展示。123456789101112131415# 自定义str来控制print的显示内容，str函数必须return一个字符串对象# 使用repr = str来偷懒控制台和print的显示一致class Student: def __init__(self, name, age): self.name = name self.age = age def __str__(self): return f&apos;&#123;self.__class__&#125;, &#123;self.name&#125;, &#123;self.age&#125;&apos; __repr__ = __str__stu = Student(&apos;zlw&apos;, 26)print(stu) # &lt;class &apos;__main__.Student&apos;&gt;, zlw, 26 callcall方法提供给对象可以被执行的能力，就像函数那样，而本质上，函数就是对象，函数就是一个拥有call方法的对象。拥有call方法的对象，使用callable可以得到True的结果，可以使用（）执行，执行时，可以传入参数，也可以返回值。所以我们可以使用call方法来实现实例化对象作为装饰器：123456789101112131415161718192021# 检查一个函数的输入参数个数, 如果调用此函数时提供的参数个数不符合预定义，则无法调用。# 单纯函数版本装饰器def args_num_require(require_num): def outer(func): def inner(*args, **kw): if len(args) != require_num: print(&apos;函数参数个数不符合预定义，无法执行函数&apos;) return None return func(*args, **kw) return inner return outer@args_num_require(2)def show(*args): print(&apos;show函数成功执行!&apos;)show(1) # 函数参数个数不符合预定义，无法执行函数show(1,2) # show函数成功执行!show(1,2,3) # 函数参数个数不符合预定义，无法执行函数 1234567891011121314151617181920212223242526# 检查一个函数的输入参数个数,# 如果调用此函数时提供的参数个数不符合预定义，则无法调用。# 实例对象版本装饰器class Checker: def __init__(self, require_num): self.require_num = require_num def __call__(self, func): self.func = func def inner(*args, **kw): if len(args) != self.require_num: print(&apos;函数参数个数不符合预定义，无法执行函数&apos;) return None return self.func(*args, **kw) return inner@Checker(2)def show(*args): print(&apos;show函数成功执行!&apos;)show(1) # 函数参数个数不符合预定义，无法执行函数show(1,2) # show函数成功执行!show(1,2,3) # 函数参数个数不符合预定义，无法执行函数 deldel用于当对象的引用计数为0时自动调用。del一般出现在两个地方：1、手工使用del减少对象引用计数至0，被垃圾回收处理时调用。2、程序结束时调用。del一般用于需要声明在对象被删除前需要处理的资源回收操作123456789101112# 手工调用del 可以将对象引用计数减一，如果减到0，将会触发垃圾回收class Student: def __del__(self): print(&apos;调用对象的del方法，此方法将会回收此对象内存地址&apos;)stu = Student() # 调用对象的__del__方法回收此对象内存地址del stuprint(&apos;下面还有程序其他代码&apos;) iter、next这2个方法用于将一个对象模拟成序列。内置类型如列表、元组都可以被迭代，文件对象也可以被迭代获取每一行内容。重写这两个方法就可以实现自定义的迭代对象。1234567891011121314151617181920# 定义一个指定范围的自然数类，并可以提供迭代class Num: def __init__(self, max_num): self.max_num = max_num self.count = 0 def __iter__(self): return self def __next__(self): if self.count &lt; self.max_num: self.count += 1 return self.count else: raise StopIteration(&apos;已经到达临界&apos;) num = Num(10)for i in num: print(i) # 循环打印1---10 getitem、setitem、delitem重写此系列方法可以模拟对象成列表或者是字典，即可以使用key-value的类型。12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849class StudentManager: li = [] dic = &#123;&#125; def add(self, obj): self.li.append(obj) self.dic[obj.name] = obj def __getitem__(self, item): if isinstance(item, int): # 通过下标得到对象 return self.li[item] elif isinstance(item, slice): # 通过切片得到一串对象 start = item.start stop = item.stop return [student for student in self.li[start:stop]] elif isinstance(item, str): # 通过名字得到对象 return self.dic.get(item, None) else: # 给定的key类型错误 raise TypeError(&apos;你输入的key类型错误!&apos;)class Student: manager = StudentManager() def __init__(self, name): self.name = name self.manager.add(self) def __str__(self): return f&apos;学生: &#123;self.name&#125;&apos; __repr__ = __str__stu1 = Student(&apos;小明&apos;)stu2 = Student(&apos;大白&apos;)stu3 = Student(&apos;小红&apos;)stu4 = Student(&apos;胖虎&apos;)# 当做列表使用print(Student.manager[0]) # 学生: 小明print(Student.manager[-1]) # 学生: 胖虎print(Student.manager[1:3]) # [学生: 大白, 学生: 小红]# 当做字典使用print(Student.manager[&apos;胖虎&apos;]) # 学生: 胖虎 getattr、setattr、delattr当使用obj.x = y的时候触发对象的setattr方法，当del obj.x的时候触发对象的delattr方法。当尝试访问对象的一个不存在的属性时 obj.noexist 会触发getattr方法，getattr方法是属性查找中优先级最低的。可以重写这3个方法来控制对象属性的访问、设置和删除。特别注意：如果定义了getattr，而没有任何代码（即只有pass），则所有不存在的属性值都是None而不会报错,可以使用super().getattr()方法来处理12345678910111213141516171819class Student: def __getattr__(self, item): print(&apos;访问一个不存在的属性时候触发&apos;) return &apos;不存在&apos; def __setattr__(self, key, value): print(&apos;设置一个属性值的时候触发&apos;) # self.key = value # 这样会无限循环 self.__dict__[key] = value def __delattr__(self, item): print(&apos;删除一个属性的时候触发&apos;) if self.__dict__.get(item, None): del self.__dict__[item]stu = Student()stu.name = &apos;zlw&apos; # 设置一个属性值的时候触发print(stu.noexit) # 访问一个不存在的属性时候触发 , 返回&apos;不存在&apos;del stu.name # 删除一个属性的时候触发 getatrribute这是一个属性访问截断器，即，在你访问属性时，这个方法会把你的访问行为截断，并优先执行此方法中的代码，此方法应该是属性查找顺序中优先级最高的。属性查找顺序：实例的getattribute–&gt;实例对象字典–&gt;实例所在类字典–&gt;实例所在类的父类(MRO顺序）字典–&gt;实例所在类的getattr–&gt;报错1234567891011121314151617181920class People: a = 200class Student(People): a = 100 def __init__(self, a): self.a = a def __getattr__(self, item): print(&apos;没有找到:&apos;, item) def __getattribute__(self, item): print(&apos;属性访问截断器&apos;) if item == &apos;a&apos;: return 1 return super().__getattribute__(item)stu = Student(1)print(stu.a) # 1 enter、exit这两个方法的重写可以让我们对一个对象使用with方法来处理工作前的准备，以及工作之后的清扫行为123456789101112131415161718192021222324class MySQL: def connect(self): print(&apos;启动数据库连接，申请系统资源&apos;) def execute(self): print(&apos;执行sql命令，操作数据&apos;) def finish(self): print(&apos;数据库连接关闭，清理系统资源&apos;) def __enter__(self): # with的时候触发，并赋给as变量 self.connect() return self def __exit__(self, exc_type, exc_val, exc_tb): # 离开with语句块时触发 self.finish()with MySQL() as mysql: mysql.execute() # 结果:# 启动数据库连接，申请系统资源# 执行sql命令，操作数据# 数据库连接关闭，清理系统资源 get、set、delete、描述符(研究中，待补充）1234567891011121314151617181920212223242526272829#描述符类(相当于代理)#定义为了数据描述符：定义了_set_ 和_get_方法的对象class Foo(): def __get__(self, instance, owner): print(&quot;执行Foo get方法&quot;) def __set__(self, instance, value): print(&quot;执行Foo set方法&quot;) def __delete__(self): print(&quot;执行Foo del方法&quot;)#主要运行的类:class Test(): #类的x属性被Foo代理,所以属性访问优先级也被修改: #类属性 &gt; 数据描述符 &gt; 实例属性 &gt; 非实例属性 &gt; __getattr__() x = Foo() def __init__(self,num): self.x = num#因为x类属性被Foo代理,触发Foo的set方法,而set方法只是打印了,没有做数据操作,abc = Test(100)abc.xprint(abc.__dict__)# print输出:-----------# 执行Foo set方法# 执行Foo get方法# &#123;&#125;# 执行Foo del方法# print输出:----------- 双下划线默认情况下，Python中的成员函数和成员变量都是公开的(相当于java中的public，或者OC中定义在.h文件中的公开成员变量)。在python中没有public,private等关键词来修饰成员函数和成员变量。为了区分，用下划线来体现。 (1)_xxx“单下划线 “ 开始的成员变量相当于私有变量，也叫做保护变量，意思是只有类实例和子类实例能访问到这些变量，需通过类提供的接口进行访问（可以定义有点像java中的getter、setter方法，借助方法访问，而不是直接对变量动刀子）；不能用’from module import *’导入。其实，Python并没有真正的私有化支持，用下划线得到的是伪私有，也就是说如果你强行要用也是可以的，但不符合python的规范。我们应该尽量避免重新定义以下划线开头的变量。 (2)末尾单下划线：var_在开发过种中，一个最合适的变量名称已经被一个关键字占用。因此像class、def这样的名称不能用作python中的变量名称。在这样的情况下，你可以使用在关键字未尾附加一个下划线来解决命名冲突问题。同样在PEP8中也对此约定进行了解释。 (3)单下划线：_python中单下划线和其它语言一样用来表示这个变量是临时的或无关紧要的，抛弃掉这个值。如在循环处理中，我们不需要列表中的索引值，就可以使用“_”抛弃掉此值。for _ in range(10):又如 在拆分元组为单独变量时候， 我们可以把不需要的值使用 _ 作为占位符变量进行抛弃。除了用作临时变量之外，“_”是大多数Python REPL中的一个特殊变量，它表示由解释器评估的最近一个表达式的结果。你可以在一个解释器会话中访问先前计算的结果，或者，你是在动态构建多个对象并与它们交互，无需事先给这些对象分配名字。 (4)__xxx双下划线：类中的私有变量/方法名 （Python的函数也是对象，所以成员方法称为成员变量也行得通）。” 双下划线 “ 开始的是私有成员，意思是只有类对象自己能访问，连子类对象也不能访问到这个数据。 (5)xxx系统定义名字，前后均有一个“双下划线” 代表python里特殊方法专用的标识，如 init（）代表类的构造函数。类似xxx这样的变量是特殊变量，可以被直接引用，但是有特殊用途，比如一个模块的author，name就是特殊变量，模块定义的文档注释（就是模块开头的字符串）也可以用特殊变量doc访问，我们自己的变量一般不要用这种变量名。 元类（选学）socket粘包异常处理主动触发异常123456789101112131415161718&gt;&gt;&gt; class ListNode(object):... def __init__(self,value):... self.val = value... self.next = None...&gt;&gt;&gt;&gt;&gt;&gt; a = ListNode(1)a.val&gt;&gt;&gt; class Li(ListNode):... a = 3... def __init__(self,value,a):... ListNode.__init__(self,value)... self.a = a...&gt;&gt;&gt;Li.a https://www.cnblogs.com/magicking/p/8971740.htmlhttps://www.cnblogs.com/zzzlw/p/9286828.html]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>类</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python 网络通信]]></title>
     <url>%2F2019%2F05%2F18%2Fpython-%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1%2F</url>
     <content type="text"><![CDATA[网络编程中有两个主要的问题： 如何准确的定位网络上一台或多台主机 找到主机后如何可靠高效的进行数据传输 TCP/IP 套接字 创建套接字socket.socket([family[, type[, proto]]]) family: 套接字家族可以使AF_UNIX或者AF_INET type: 套接字类型可以根据是面向连接的还是非连接分为SOCK_STREAM（基于TCP）或SOCK_DGRAM（基于UDP） protocol: 一般不填默认为0. 常用函数sk.bind(address) s.bind(address) 将套接字绑定到地址。address地址的格式取决于地址族。在AF_INET下，以元组（host,port）的形式表示地址。 sk.listen(backlog) 开始监听传入连接。backlog指定在拒绝连接之前，可以挂起的最大连接数量。 backlog等于5，表示内核已经接到了连接请求，但服务器还没有调用accept进行处理的连接个数最大为5 这个值不能无限大，因为要在内核中维护连接队列 sk.accept() 接受连接并返回（conn,address）,其中conn是新的套接字对象，可以用来接收和发送数据。address是连接客户端的地址。 接收TCP 客户的连接（阻塞式）等待连接的到来 sk.connect(address) 连接到address处的套接字。一般，address的格式为元组（hostname,port）,如果连接出错，返回socket.error错误。 sk.close() 关闭套接字 sk.recv(bufsize[,flag]) 接受套接字的数据。数据以字符串形式返回，bufsize指定最多可以接收的数量。flag提供有关消息的其他信息，通常可以忽略。 sk.send(string[,flag]) 将string中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于string的字节大小。即：可能未将指定内容全部发送。 struct模块有的时候需要用python处理二进制数据，比如，存取文件，socket操作时.这时候，可以使用python的struct模块来完成.可以用 struct来处理c语言中的结构体.一个字节 = 2个十六进制struct模块中最重要的三个函数是pack(), unpack(), calcsize() pack(fmt, v1, v2, …) 按照给定的格式(fmt)，把数据封装成字符串(实际上是类似于c结构体的字节流) unpack(fmt, string) 按照给定的格式(fmt)解析字节流string，返回解析出来的tuple calcsize(fmt) 计算给定的格式(fmt)占用多少字节的内存 struct中支持的格式如下表： Format C Type Python 字节数 x pad byte no value 1 c char string of length 1 1 b signed char integer 1 B unsigned char integer 1 ? _Bool bool 1 h short integer 2 H unsigned short integer 2 i int string of length 1 1 I unsigned int string of length 1 1 l long integer 4 L unsigned long long 4 q long long long 8 Q unsigned long long long 8 f float float 4 d double float 8 s char[] string 1 p char[] string 1 P void * long ? 注1.q和Q只在机器支持64位操作时有意思 注2.每个格式前可以有一个数字，表示个数 注3.s格式表示一定长度的字符串，4s表示长度为4的字符串，但是p表示的是pascal字符串 注4.P用来转换一个指针，其长度和机器字长相关 注5.最后一个可以用来表示指针类型的，占4个字节 为了同c中的结构体交换数据，还要考虑有的c或c++编译器使用了字节对齐，通常是以4个字节为单位的32位系统，故而struct根据本地机器字节顺序转换.可以用格式中的第一个字符来改变对齐方式.定义如下： Character Byte order Size and alignment @ native native 凑够4个字节 = native standard 按原字节数 &lt; little-endian standard 按原字节数 &gt; big-endian standard 按原字节数 ! network (= big-endian) standard 按原字节数 示例1234567&gt;&gt;&gt; import struct&gt;&gt;&gt; struct.pack(&apos;&lt;HH&apos;, 1,2)b&apos;\x01\x00\x02\x00&apos;&gt;&gt;&gt; struct.unpack(&apos;&lt;hh&apos;, bytes(b&apos;\x01\x00\x00\x00&apos;))(1, 0)&gt;&gt;&gt; struct.unpack(&apos;&lt;h&apos;, bytes(b&apos;\x03\x00&apos;))(3,) 示例一： 比如有一个结构体 struct Header { unsigned short id; char[4] tag; unsigned int version; unsigned int count; } 通过socket.recv接收到了一个上面的结构体数据，存在字符串s中，现在需要把它解析出来，可以使用unpack()函数. import struct id, tag, version, count = struct.unpack(“!H4s2I”, s) 上面的格式字符串中，!表示我们要使用网络字节顺序解析，因为我们的数据是从网络中接收到的，在网络上传送的时候它是网络字节顺序的.后面的H表示 一个unsigned short的id,4s表示4字节长的字符串，2I表示有两个unsigned int类型的数据. 就通过一个unpack，现在id, tag, version, count里已经保存好我们的信息了. 同样，也可以很方便的把本地数据再pack成struct格式. ss = struct.pack(“!H4s2I”, id, tag, version, count); pack函数就把id, tag, version, count按照指定的格式转换成了结构体Header，ss现在是一个字符串(实际上是类似于c结构体的字节流)，可以通过 socket.send(ss)把这个字符串发送出去. 示例二： import struct a=12.34 #将a变为二进制 bytes=struct.pack(‘i’,a) 此时bytes就是一个string字符串，字符串按字节同a的二进制存储内容相同。 再进行反操作 现有二进制数据bytes，（其实就是字符串），将它反过来转换成python的数据类型： a,=struct.unpack(‘i’,bytes) 注意，unpack返回的是tuple 所以如果只有一个变量的话： bytes=struct.pack(‘i’,a) 那么，解码的时候需要这样 a,=struct.unpack(‘i’,bytes) 或者 (a,)=struct.unpack(‘i’,bytes) 如果直接用a=struct.unpack(‘i’,bytes)，那么 a=(12.34,) ，是一个tuple而不是原来的浮点数了。 如果是由多个数据构成的，可以这样： a=’hello’ b=’world!’ c=2 d=45.123 bytes=struct.pack(‘5s6sif’,a,b,c,d) 此时的bytes就是二进制形式的数据了，可以直接写入文件比如 binfile.write(bytes) 然后，当我们需要时可以再读出来，bytes=binfile.read() 再通过struct.unpack()解码成python变量 a,b,c,d=struct.unpack(‘5s6sif’,bytes) ‘5s6sif’这个叫做fmt，就是格式化字符串，由数字加字符构成，5s表示占5个字符的字符串，2i，表示2个整数等等，下面是可用的字符及类型，ctype表示可以与python中的类型一一对应。 注意：二进制文件处理时会碰到的问题 我们使用处理二进制文件时，需要用如下方法 binfile=open(filepath,’rb’) 读二进制文件 binfile=open(filepath,’wb’) 写二进制文件 那么和binfile=open(filepath,’r’)的结果到底有何不同呢？ 不同之处有两个地方： 第一，使用’r’的时候如果碰到’0x1A’，就会视为文件结束，这就是EOF。使用’rb’则不存在这个问题。即，如果你用二进制写入再用文本读出的话，如果其中存在’0X1A’，就只会读出文件的一部分。使用’rb’的时候会一直读到文件末尾。 第二，对于字符串x=’abc\ndef’，我们可用len(x)得到它的长度为7，\n我们称之为换行符，实际上是’0X0A’。当我们用’w’即文本方式写的时候，在windows平台上会自动将’0X0A’变成两个字符’0X0D’，’0X0A’，即文件长度实际上变成8.。当用’r’文本方式读取时，又自动的转换成原来的换行符。如果换成’wb’二进制方式来写的话，则会保持一个字符不变，读取时也是原样读取。所以如果用文本方式写入，用二进制方式读取的话，就要考虑这多出的一个字节了。’0X0D’又称回车符。linux下不会变。因为linux只使用’0X0A’来表示换行。 大小端以及字节序的问题网络字节顺序NBO（Network Byte Order）：按从高到低的顺序存储，在网络上使用统一的网络字节顺序，可以避免兼容性问题。 The order in which the bytes of a multi-byte number are transmitted on a network - most significant byte first (as in “big-endian” storage). 主机字节顺序（HBO，Host Byte Order）：不同的机器HBO不相同，与CPU设计有关计算机数据存储有两种字节优先顺序：高位字节优先和低位字节优先。 [struct] (https://docs.python.org/3/library/struct.html)[关于int，unsigned int , short的关系与跨平台应用及char,int,float等类型在不同平台下所占字节数] (https://blog.csdn.net/bzhxuexi/article/details/19551979) 单线程通信 该实例中，只能 client 发一句， server回一句（先启动server，后启动client） 1234567891011121314151617181920#!/usr/bin/env python# -*- coding:utf-8 -*-import socketif __name__ == &apos;__main__&apos;: sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #ipv4, TCP sock.bind((&apos;0.0.0.0&apos;,5000)) #元组,相当于一个参数 sock.listen(10) #同时保持是十个人的连接 conn, addr = sock.accept() while True: data = conn.recv(1024) #最多1K的数据 print(data) if data == &apos;bye&apos;: break else: msg = raw_input(&quot;&gt;&gt;&quot;) conn.send(msg) sock.close() print(&apos;Bye!!&apos;) Client1234567891011121314151617#!/usr/bin/env python# -*- coding:utf-8 -*-import socket, timeif __name__ == &apos;__main__&apos;: sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) sock.connect((&apos;localhost&apos;,5000)) while True: msg = raw_input(&quot;&gt;&gt;&quot;) if msg == &quot;bye&quot;: sock.send(msg) sock.close() break else: sock.send(msg) data = sock.recv(1024) 多线程通信 在该实例中可以自由发送和接收信息（先启动server，后启动client） 利用threading，多线程进行接受消息和发送消息 callback_recv函数负责接受信息的功能 callback_send函数负责发送信息的功能 123456789101112131415161718192021222324252627282930313233343536373839#!/usr/bin/env python# -*- coding:utf-8 -*-import socket, threading, sysdef callback_send(conn): &apos;&apos;&apos; :param sq: :return: &apos;&apos;&apos; while True: #为了维持持续的发送 msg = raw_input(&quot;&gt;&gt;&quot;) conn.send(msg)def callback_recv(conn): &apos;&apos;&apos; :param sock: :return: &apos;&apos;&apos; while True: #为了维持持续的接收 data = conn.recv(1024) print(data)if __name__ == &apos;__main__&apos;: sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) sock.bind((&apos;0.0.0.0&apos;,5000)) #元组,相当于一个参数 sock.listen(10) #同时保持是十个人的连接 conn, addr = sock.accept() thread_send = threading.Thread(target=callback_send, args=(conn, )) thread_recv = threading.Thread(target=callback_recv, args=(conn, )) thread_send.start() thread_recv.start() sock.close() client 12345678910111213141516171819202122232425262728293031323334353637383940414243#!/usr/bin/env python# -*- coding:utf-8 -*-import socket, time, threading, sysdef callback_send(sock): &apos;&apos;&apos; :param sq: :return: &apos;&apos;&apos; while True: msg = raw_input(&quot;&gt;&gt;&quot;) sock.send(msg) # if msg in [&apos;bye&apos;, &apos;quit&apos;]: # sock.close # breakdef callback_recv(sock): &apos;&apos;&apos; :param sock: :return: &apos;&apos;&apos; while True: data = sock.recv(1024) print(data)if __name__ == &apos;__main__&apos;: sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) sock.connect((&apos;localhost&apos;,5000)) thread_send = threading.Thread(target=callback_send, args=(sock, )) thread_recv = threading.Thread(target=callback_recv, args=(sock, )) thread_send.start() thread_recv.start() while True: pass sock.close() UDP 123456789101112131415161718192021222324252627282930313233343536373839404142434445import socketdef send_msg(udp_socket): # 获取输入 msg = input(&quot;请输入要发送的数据：&quot;) # 输入对方IP dest_ip = input(&quot;请输入对方ip：&quot;) # 输入对方port dest_port = int(input(&quot;请输入对方端口：&quot;)) # 编码 udp_b = msg.encode(&apos;utf-8&apos;) # 发送数据 udp_socket.sendto(udp_b,(dest_ip,dest_port))def recv_msg(udp_socket): recv_msg = udp_socket.recvfrom(1024) # 解码 # udp_j = recv_msg.decode(&apos;utf-8&apos;) # 显示 recv_msg = recv_msg[0].decode(&apos;utf-8&apos;) print(recv_msg)def main(): # 创建套接字 udp_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # 绑定本地信息 udp_socket.bind((&quot;&quot;,7789)) while True: print(&quot;=&quot; * 30) print(&quot;1.发送消息&quot;) print(&quot;2.接收消息&quot;) print(&quot;0.退出聊天&quot;) op_num = input(&quot;请输入要操作的功能：&quot;) if op_num == &quot;1&quot;: send_msg(udp_socket) elif op_num == &quot;2&quot;: recv_msg(udp_socket) elif op_num == &quot;0&quot;: break else: print(&quot;输入有误，请重新输入&quot;) udp_socket.close()if __name__== main(): main() HTTP int与IP转换123456789101112131415&gt;&gt;&gt; import socket,struct&gt;&gt;&gt; int_ip = 123456789&gt;&gt;&gt; socket.inet_ntoa(struct.pack(‘I’,socket.htonl(int_ip)))#整数转换为ip地址’7.91.205.21′&gt;&gt;&gt; str(socket.ntohl(struct.unpack(“I”,socket.inet_aton(“255.255.255.255″))[0]))#ip地址转换为整数’4294967295′实际上也就是进制数的转换用lambda的方式，int2ip一行代码搞定&gt;&gt;&gt; int2ip = lambda x: &apos;.&apos;.join([str(x/(256**i)%256) for i in range(3,-1,-1)])&gt;&gt;&gt; int2ip(123456789)’7.91.205.21′用lambda的方式，ip2int&gt;&gt;&gt; ip2int = lambda x:sum([256**j*int(i) for j,i in enumerate(x.split(&apos;.&apos;)[::-1])])&gt;&gt;&gt; ip2int(&apos;7.91.205.21&apos;)123456789 request模块requests模块是python的一个第三方模块，它是基于python自带的urllib模块封装的，用来发送http请求和获取返回的结果，操作很简单。需要自己安装 pip install requests 1234567891011121314151617181920 pa = &#123;&apos;query&apos;:&apos;&apos;&apos;&#123;... id... name... age... isKid... &#125;... &apos;&apos;&apos;&#125;&gt;&gt;&gt; res = requests.post(url=url, params=pa)&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; res.contentb&apos;&#123;&quot;data&quot;:&#123;&quot;id&quot;:123,&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:10,&quot;isKid&quot;:true&#125;&#125;&apos;&gt;&gt;&gt; res.cookies&lt;RequestsCookieJar[]&gt;&gt;&gt;&gt; res.json&lt;bound method Response.json of &lt;Response [200]&gt;&gt;&gt;&gt;&gt; res.json()&#123;&apos;data&apos;: &#123;&apos;age&apos;: 10, &apos;id&apos;: 123, &apos;isKid&apos;: True, &apos;name&apos;: &apos;jack&apos;&#125;&#125;&gt;&gt;&gt;]]></content>
@@ -31,18 +43,6 @@
       </categories>
       <tags>
         <tag>Python psutil</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[python 类和对象]]></title>
-    <url>%2F2019%2F05%2F18%2Fpython-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%2F</url>
-    <content type="text"><![CDATA[class ListNode(object):… def init(self,value):… self.val = value… self.next = None… a = ListNode(1) a.val class Li(ListNode):… a = 3… def init(self,value,a):… ListNode.init(self,value)… self.a = a… Li.a https://www.cnblogs.com/magicking/p/8971740.html]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>类</tag>
       </tags>
   </entry>
   <entry>
@@ -92,30 +92,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[python 增删改查操作]]></title>
-    <url>%2F2019%2F03%2F22%2Fpython-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%2F</url>
-    <content type="text"><![CDATA[字符串查找find替换replacestrip()eval列表查找增加更新删除字典查找增加更新删除集合查找增加更新删除文件查找增加更新删除Json]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>增删改查</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[python 多分支判断]]></title>
-    <url>%2F2019%2F03%2F22%2Fpython-%E5%A4%9A%E5%88%86%E6%94%AF%E5%88%A4%E6%96%AD%2F</url>
-    <content type="text"><![CDATA[python中没有switch语句，可以考虑字典的映射关系来实现多分支判断。 123456789101112131415swtich_dic=&#123;&quot;add&quot;:add_info,&quot;del&quot;:del_info,&quot;find&quot;:find_info,&quot;update&quot;:update_info&#125;while True: cmd=input(&apos;&gt;&gt;：&apos;).strip().lower().split() if not cmd:continue if cmd in func_dic: func = switch_dic.get(cmd) func() 实现功能以后,可以用极限法看看代码有没有优化的地方,就比如这个分支判断，如果用极限法放大分支数量,就会发现用字典的优势了,还有数据,如果数据量比较大的话,也是一样的]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>多分支判断</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[python 项目目录]]></title>
     <url>%2F2019%2F03%2F22%2Fpython-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%2F</url>
     <content type="text"><![CDATA[一般项目的目录结构project_name log conf project_name #core libs/modules docs README install python3 setup.py install setup.py bin/ start_project.py requirements.txt #pip install requirements pip freeze #列出所有的模块]]></content>
@@ -140,14 +116,27 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[你的问题]]></title>
-    <url>%2F2019%2F03%2F21%2F%E4%BD%A0%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[你的问题是想法太多读书太少战术上的勤奋掩盖不了战略上的错误 个人的成长 公司的成长 反思]]></content>
+    <title><![CDATA[python 多分支判断]]></title>
+    <url>%2F2019%2F03%2F22%2Fpython-%E5%A4%9A%E5%88%86%E6%94%AF%E5%88%A4%E6%96%AD%2F</url>
+    <content type="text"><![CDATA[python中没有switch语句，可以考虑字典的映射关系来实现多分支判断。 123456789101112131415swtich_dic=&#123;&quot;add&quot;:add_info,&quot;del&quot;:del_info,&quot;find&quot;:find_info,&quot;update&quot;:update_info&#125;while True: cmd=input(&apos;&gt;&gt;：&apos;).strip().lower().split() if not cmd:continue if cmd in func_dic: func = switch_dic.get(cmd) func() 实现功能以后,可以用极限法看看代码有没有优化的地方,就比如这个分支判断，如果用极限法放大分支数量,就会发现用字典的优势了,还有数据,如果数据量比较大的话,也是一样的]]></content>
       <categories>
-        <category>人生</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
+        <tag>Python</tag>
+        <tag>多分支判断</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python 增删改查操作]]></title>
+    <url>%2F2019%2F03%2F22%2Fpython-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%2F</url>
+    <content type="text"><![CDATA[字符串查找find替换replacestrip()eval列表查找增加更新删除字典查找增加更新删除集合查找增加更新删除文件查找增加更新删除Json]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>增删改查</tag>
       </tags>
   </entry>
   <entry>
@@ -179,16 +168,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[python 文件处理]]></title>
-    <url>%2F2019%2F03%2F21%2Fpython%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%2F</url>
-    <content type="text"><![CDATA[三元运算123a = 2b = 3val = a if a &lt; b else b 读文件123f = open(file=&apos;d:/hello.txt&apos;,mode=&apos;r,encoding=&apos;utf-8&apos;)data = f.read()f.close 二进制模式 mode = b 智能检测编码 chardet1234567import chardetf = open(&apos;log&apos;,mode=&apos;rb&apos;)data = f.read()f.close()result = chardet.detect(data)print(result)data.decode(&quot;gb2312&quot;) 安装 pip3 install chardet大文件处理 1234f = open(&quot;log&quot;,&apos;r&apos;,encoding=&quot;gbk&quot;)for line in f: print(line)f.close() 写文件(创建新文件，清空数据)123f = open(&apos;log&apos;,&apos;w&apos;,encoding=&apos;gbk&apos;)f.write(&quot;helow&quot;)f.close() 二进制写 123f = open(&apos;log&apos;,&apos;wb&apos;)f.write(&quot;helow&quot;,encoding=&apos;gbk&apos;)f.close() 追加文件123f = open(&apos;log&apos;,&apos;ab&apos;)f.write(&quot;hellow&quot;,encoding=&apos;gbk&apos;)f.close 混合读写 读写模式 123f = open(&apos;log&apos;, &apos;r+&apos;)f.read()f.write(&quot;hello&quot;) 写读模式（清空原文件），几乎无用 123f = open(&apos;log&apos;, &apos;w+&apos;)f.read()f.write(&quot;hello&quot;) 常用函数flush #强制把内存刷新到硬盘read #按字符读tell #当前文件光标位置，按字节来度seek #改变光标位置，按字节读truncate #按当前位置截断文件（3,6） 6-&gt;从头开始截取6个 文件修改（占内存或占硬盘） 占硬盘f1 = “log.txt”f_new = “log_new.txt”old_str = “alex”new_str = “david”f = open(f1,”r”,encoding=”utf-8”)f_new = open(f_new,”w”,encoding=”utf-8”)for line in f: if old_str in line: line = line.replace(old_str,new_str) f_new.write(line)f.close()f_new.close()os.rename(f_new,f1) 占内存]]></content>
+    <title><![CDATA[你的问题]]></title>
+    <url>%2F2019%2F03%2F21%2F%E4%BD%A0%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[你的问题是想法太多读书太少战术上的勤奋掩盖不了战略上的错误 个人的成长 公司的成长 反思]]></content>
       <categories>
-        <category>Python</category>
+        <category>人生</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>文件</tag>
-        <tag>Ch2</tag>
+        <tag>杂谈</tag>
       </tags>
   </entry>
   <entry>
@@ -203,6 +190,30 @@
         <tag>Python</tag>
         <tag>函数模块</tag>
         <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python 文件处理]]></title>
+    <url>%2F2019%2F03%2F21%2Fpython%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%2F</url>
+    <content type="text"><![CDATA[三元运算123a = 2b = 3val = a if a &lt; b else b 读文件123f = open(file=&apos;d:/hello.txt&apos;,mode=&apos;r,encoding=&apos;utf-8&apos;)data = f.read()f.close 二进制模式 mode = b 智能检测编码 chardet1234567import chardetf = open(&apos;log&apos;,mode=&apos;rb&apos;)data = f.read()f.close()result = chardet.detect(data)print(result)data.decode(&quot;gb2312&quot;) 安装 pip3 install chardet大文件处理 1234f = open(&quot;log&quot;,&apos;r&apos;,encoding=&quot;gbk&quot;)for line in f: print(line)f.close() 写文件(创建新文件，清空数据)123f = open(&apos;log&apos;,&apos;w&apos;,encoding=&apos;gbk&apos;)f.write(&quot;helow&quot;)f.close() 二进制写 123f = open(&apos;log&apos;,&apos;wb&apos;)f.write(&quot;helow&quot;,encoding=&apos;gbk&apos;)f.close() 追加文件123f = open(&apos;log&apos;,&apos;ab&apos;)f.write(&quot;hellow&quot;,encoding=&apos;gbk&apos;)f.close 混合读写 读写模式 123f = open(&apos;log&apos;, &apos;r+&apos;)f.read()f.write(&quot;hello&quot;) 写读模式（清空原文件），几乎无用 123f = open(&apos;log&apos;, &apos;w+&apos;)f.read()f.write(&quot;hello&quot;) 常用函数flush #强制把内存刷新到硬盘read #按字符读tell #当前文件光标位置，按字节来度seek #改变光标位置，按字节读truncate #按当前位置截断文件（3,6） 6-&gt;从头开始截取6个 文件修改（占内存或占硬盘） 占硬盘f1 = “log.txt”f_new = “log_new.txt”old_str = “alex”new_str = “david”f = open(f1,”r”,encoding=”utf-8”)f_new = open(f_new,”w”,encoding=”utf-8”)for line in f: if old_str in line: line = line.replace(old_str,new_str) f_new.write(line)f.close()f_new.close()os.rename(f_new,f1) 占内存]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>文件</tag>
+        <tag>Ch2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python的两种注释方式]]></title>
+    <url>%2F2019%2F03%2F20%2Fpython%E6%B3%A8%E9%87%8A%2F</url>
+    <content type="text"><![CDATA[为程序添加注释可以用来解释程序某些部分的作用和功能，提高程序的可读性。除此之外，注释也是调试程序的重要方式。在某些时候，我们不希望编译、执行程序中的某些代码，这时就可以将这些代码注释掉。Python 语言允许在任何地方插入空字符或注释，但不能插入到标识符和字符串中间。Python 源代码的注释有两种形式，分别是单行注释和多行注释： 单行注释Python 使用井号（＃）表示单行注释的开始，跟在“＃”号后面直到这行结束为止的代码都将被解释器忽略。单行注释就是在程序中注释一行代码，在Python 程序中将井号（＃）放在需要注释的内容之前就可以了。 多行注释多行注释是指一次性将程序中的多行代码注释掉，在 Python 程序中使用三个单引号或三个双引号将注释的内容括起来。 1234567891011#这是一行简单的注释print (&quot;Hello World!&quot;)&apos;&apos;&apos;这里面的内容全部是多行注释Python语言真的很简单&apos;&apos;&apos;# print(&quot;这行代码被注释了，将不会被编译、执行！&quot;)&quot;&quot;&quot;这是用三个双引号括起来的多行注释Python 同样是允许的&quot;&quot;&quot;]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python 注释</tag>
       </tags>
   </entry>
   <entry>
@@ -228,17 +239,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[python 字典函数]]></title>
-    <url>%2F2019%2F03%2F20%2Fpython%E5%AD%97%E5%85%B8%2F</url>
-    <content type="text"><![CDATA[字典是键值对的数据类型,key不可以重复，必须是不可变类型，可hash， 字典是无序的。 语法123456info = &#123; ‘name1’:&apos;tt&apos;, ‘nmae2’:&apos;ttt&apos; ‘david’：[24,&apos;beijing&apos;],&#125;info[&apos;david&apos;] 增加1info[&apos;stu1&apos;]=&apos;cat&apos; 获取1234#没有返回Noneinfo.get(&apos;stu1&apos;)#没有报错info[&apos;stu1&apos;] 删除123info.pop(&apos;stu1&apos;)#随机删除info.popitem() 多级字典嵌套123zoo = &#123; &quot;爬行馆&quot;:&#123;&quot;a1&quot;:&quot;lizard&quot;&#125;,&#125; 获取键12info.keys()&#125; 获取值1info.values() 获取items1info.items() 创建字典fromkeys1info.fromkeys([&apos;A&apos;,&apos;B&apos;,&apos;C&apos;]) 更新字典123dic2 = &#123;&quot;k1&quot;: &quot;v1111&quot;, &quot;a&quot;: &quot;b&quot;&#125;dic2.update(&#123;&quot;k1&quot;: &quot;v1111&quot;, &quot;a&quot;: &quot;b&quot;, &quot;k3&quot;: &quot;v3&quot;&#125;)print(&quot;Value : %s&quot; % dic2) 字典循环123456#高效for k in info: print(k,info[k])#低效for k,v in info.items(): print(k,v)]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python 字典</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[python 字典列表字符串转换]]></title>
     <url>%2F2019%2F03%2F20%2Fpython%E5%AD%97%E5%85%B8%E5%88%97%E8%A1%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[字典dic = {&apos;name&apos;: &apos;Zara&apos;, &apos;age&apos;: 7, &apos;class&apos;: &apos;First&apos;} 字典转为字符串str(dic) 返回：&lt;type &apos;str&apos;&gt; {&apos;age&apos;: 7, &apos;name&apos;: &apos;Zara&apos;, &apos;class&apos;: &apos;First&apos;} 字典可以转为元组tuple(dict) 返回：(&apos;age&apos;, &apos;name&apos;, &apos;class&apos;) tuple(dict.values()) 返回：(7, &apos;Zara&apos;, &apos;First&apos;) 字典转为列表list(dict) 返回：[&apos;age&apos;, &apos;name&apos;, &apos;class&apos;] dict.values 元组tup=(1, 2, 3, 4, 5) 元组转为字符串str(tup) 返回：&apos;(1, 2, 3, 4, 5)&apos; 元组转为列表list(tup) 返回：[1, 2, 3, 4, 5] 嵌套元组转为字典dict((1,2),(2,3)) 列表nums=[1, 3, 5, 7, 8, 13, 20]; 列表转为字符串str(nums) 返回：&apos;[1, 3, 5, 7, 8, 13, 20]&apos; 列表转为元组print tuple(nums) 返回：(1, 3, 5, 7, 8, 13, 20) 嵌套列表转为字典dict[[1,2],[2,3]] 字符串#字符串转为元组 tuple(eval(“(1,2,3)”)) 返回：(1, 2, 3) #字符串转为列表 list(eval(“(1,2,3)”)) 返回：[1, 2, 3] #字符串转为字典 eval(&quot;{&apos;name&apos;:&apos;ljq&apos;, &apos;age&apos;:24}&quot;)) enumerateenumerate(&apos;abcde&apos;) enumerate([1,2,3,4])]]></content>
@@ -250,25 +250,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[PyCharm使用]]></title>
-    <url>%2F2019%2F03%2F20%2Fpycharm-%E4%BD%BF%E7%94%A8%E7%A7%98%E7%B1%8D%2F</url>
-    <content type="text"><![CDATA[PyCharm介绍PyCharm是一种Python IDE，带有一整套可以帮助用户在使用Pythhon语言开发时提高工作效率的工具，比如调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制等。此外该IDE提供用于支持Django和Flask等框架下的专业web开发功能。 配置python解释器File-&gt;SettingsSettings-&gt;Project-&gt;Project interpreter-&gt;add local 常用快捷键复制ctrl+d删除ctrl+e切换行shift+enter注释ctrl+shift+/取消缩进 shift+tab查找ctrl+f替换ctrl+h PyCharm IDE安装插件file-&gt;settings-&gt;plugin Git配置file-&gt;settings-&gt;version control发布到github 常用操作指南 tab转space Edit-&gt; Convert Indents 同屏显示两个文件 Move right/ Move down PEP8检测 行尾注释 空两格式#空一格+注释内容 单独行注释 #空一格+注释内容 方法之间空两行]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>PyCharm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[3小时学习Python基础]]></title>
-    <url>%2F2019%2F03%2F20%2Fpython-%E5%9F%BA%E7%A1%80%2F</url>
-    <content type="text"><![CDATA[变量variable变量的作用存数据(标记）占内存 variables are used to store information and be referenced and manipulated in a program, labelling data with a descriptive name, it is helpful to think variables as containers hold water. their sole purpose is to label and store data in memory. 变量的定义变量第一个字母不可以是数字，只能是字母数字或下划线的任意组合 python语法关键字不可以用于定义变量 驼峰体 AgeOfXiaoming = 30 下划线体 age_of_xiaoming = 30(官方推荐) 变量的调用a = 1 b = a a = 3, b=? 常量的定义python中无定义常量的语法，约定常量定义全部大写 PI = 3.1415926 用户交互name = input(&quot;what&apos;s your name?&quot;) 注释# 在重要和不好理解的地方加注释 可以用中文或英文 数据类型 整型 int 64位计算机寻址范围-2^63~2^63-1,python3中无long 浮点数 float python默认的精度是17位，就是小数点后16位 123a = 2**63b = 1.1415926type(a) 布尔类型 True False 123a = 10b = 9a &gt; b 复数 13+2.7j 字符串 1234name1 = &apos;小红&apos;name2 = &quot;小明&apos;和&apos;小红&quot; msg = &apos;&apos;&apos;小明和小红小红和小明&apos;&apos;&apos; 字符拼接(不可跨类型) 12name1+name2name1*name2 常用占位符的含义 s : 获取传入对象的__str__方法的返回值，并将其格式化到指定位置 r : 获取传入对象的__repr__方法的返回值，并将其格式化到指定位置 c : 整数：将数字转换成其unicode对应的值，10进制范围为 0 &lt;= i &lt;= 1114111（py27则只支持0-255）；字符：将字符添加到指定位置 o : 将整数转换成 八 进制表示，并将其格式化到指定位置 x : 将整数转换成十六进制表示，并将其格式化到指定位置 d : 将整数、浮点数转换成 十 进制表示，并将其格式化到指定位置 e : 将整数、浮点数转换成科学计数法，并将其格式化到指定位置（小写e） E : 将整数、浮点数转换成科学计数法，并将其格式化到指定位置（大写E） f : 将整数、浮点数转换成浮点数表示，并将其格式化到指定位置（默认保留小数点后6位） F : 同上 g : 自动调整将整数、浮点数转换成 浮点型或科学计数法表示（超过6位数用科学计数法），并将其格式化到指定位置（如果是科学计数则是e；） G : 自动调整将整数、浮点数转换成 浮点型或科学计数法表示（超过6位数用科学计数法），并将其格式化到指定位置（如果是科学计数则是E；） % : 当字符串中存在格式化标志时，需要用 %%表示一个百分号; 可选参数 + 右对齐；正数前加正好，负数前加负号； - 左对齐；正数前无符号，负数前加负号； 空格 右对齐；正数前加空格，负数前加负号； 0 右对齐；正数前无符号，负数前加负号；用0填充空白处 12345678910111213141516171819##!/usr/bin/python3# -*- coding:utf-8 -*-# __author__ = David# email:name = input(&quot;input your name:&quot;)job = input(&quot;input your job:&quot;)age = input(&quot;input your age:&quot;)address = input(&quot;input your address:&quot;)info = &apos;&apos;&apos;------info of %s------Name: %sJob: %sAge: %sAddress %s------ end ------&apos;&apos;&apos; % (name, name, job, age, address)print(info) 字符串转数字 12int(&quot;22&quot;)float(&quot;22&quot;) 列表 创建 12a = [1,2,3]a = list(1,2,3) 查找数值2 1a.index(2) 重复值 123a.count(2)``` 切边 a[:]a[:-1]a[-5:]a[::2]1追加 a.append(“iii”)1插入 a.insert(0,’333’)1修改 a[2] = ‘jack’a[0:2] = ‘jack’1删除 a.pop()1指定删除 a.remove(2)1全局删除 del a[2:6]1循环 for i in a: print(i)12排序不支持数字与字符混合排序 a.sort()1反转 a.reverse()1拼接 a+list1a.extend(list1)1清空 a.clear()1浅拷贝(创建独立的列表值，不影响原列表值) b = a.copy()1enumerate枚举 for i in enumerate(a): print(i)for index,value in enumerate(a): print(index, value)1深copy(内嵌列表)不建议使用，占内存 import copyb = copy.deepcopy(a)12345678910111213141516# 运算符* 算术运算&#123;% asset_img 算术运算.png %&#125; /除法永远返回浮点型(python3)* 比较运算&#123;% asset_img 比较运算.png %&#125;* 逻辑运算&#123;% asset_img 逻辑运算.png %&#125;* 赋值运算&#123;% asset_img 赋值运算.png %&#125;* 成员运算* 身份运算* 位运算# 流程控制* 单分支 if 条件 : 满足条件执行代码 1* 双分支 if 条件: 满足条件执行代码 else: 不满足条件执行代码 1* 多分支 if 条件: 满足条件执行代码 elif 条件: 满足条件执行代码 else: 不满足条件执行代码 12* while循环* dead loop while True: 执行代码 1234* continue &amp; break &gt; break跳出循环 continue执行下次循环* while else #判断循环中间没有断开过 while count &lt; 5: if count = 3: break count++ else: print(&quot;循环全部执行&quot;) 1* 查看变量在内存中的地址 a = 2 print(id(a)) `]]></content>
+    <title><![CDATA[python 字典函数]]></title>
+    <url>%2F2019%2F03%2F20%2Fpython%E5%AD%97%E5%85%B8%2F</url>
+    <content type="text"><![CDATA[字典是键值对的数据类型,key不可以重复，必须是不可变类型，可hash， 字典是无序的。 语法123456info = &#123; ‘name1’:&apos;tt&apos;, ‘nmae2’:&apos;ttt&apos; ‘david’：[24,&apos;beijing&apos;],&#125;info[&apos;david&apos;] 增加1info[&apos;stu1&apos;]=&apos;cat&apos; 获取1234#没有返回Noneinfo.get(&apos;stu1&apos;)#没有报错info[&apos;stu1&apos;] 删除123info.pop(&apos;stu1&apos;)#随机删除info.popitem() 多级字典嵌套123zoo = &#123; &quot;爬行馆&quot;:&#123;&quot;a1&quot;:&quot;lizard&quot;&#125;,&#125; 获取键12info.keys()&#125; 获取值1info.values() 获取items1info.items() 创建字典fromkeys1info.fromkeys([&apos;A&apos;,&apos;B&apos;,&apos;C&apos;]) 更新字典123dic2 = &#123;&quot;k1&quot;: &quot;v1111&quot;, &quot;a&quot;: &quot;b&quot;&#125;dic2.update(&#123;&quot;k1&quot;: &quot;v1111&quot;, &quot;a&quot;: &quot;b&quot;, &quot;k3&quot;: &quot;v3&quot;&#125;)print(&quot;Value : %s&quot; % dic2) 字典循环123456#高效for k in info: print(k,info[k])#低效for k,v in info.items(): print(k,v)]]></content>
       <categories>
         <category>Python</category>
       </categories>
       <tags>
-        <tag>Python 基础</tag>
+        <tag>Python 字典</tag>
       </tags>
   </entry>
   <entry>
@@ -307,6 +296,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[3小时学习Python基础]]></title>
+    <url>%2F2019%2F03%2F20%2Fpython-%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[变量variable变量的作用存数据(标记）占内存 variables are used to store information and be referenced and manipulated in a program, labelling data with a descriptive name, it is helpful to think variables as containers hold water. their sole purpose is to label and store data in memory. 变量的定义变量第一个字母不可以是数字，只能是字母数字或下划线的任意组合 python语法关键字不可以用于定义变量 驼峰体 AgeOfXiaoming = 30 下划线体 age_of_xiaoming = 30(官方推荐) 变量的调用a = 1 b = a a = 3, b=? 常量的定义python中无定义常量的语法，约定常量定义全部大写 PI = 3.1415926 用户交互name = input(&quot;what&apos;s your name?&quot;) 注释# 在重要和不好理解的地方加注释 可以用中文或英文 数据类型 整型 int 64位计算机寻址范围-2^63~2^63-1,python3中无long 浮点数 float python默认的精度是17位，就是小数点后16位 123a = 2**63b = 1.1415926type(a) 布尔类型 True False 123a = 10b = 9a &gt; b 复数 13+2.7j 字符串 1234name1 = &apos;小红&apos;name2 = &quot;小明&apos;和&apos;小红&quot; msg = &apos;&apos;&apos;小明和小红小红和小明&apos;&apos;&apos; 字符拼接(不可跨类型) 12name1+name2name1*name2 常用占位符的含义 s : 获取传入对象的__str__方法的返回值，并将其格式化到指定位置 r : 获取传入对象的__repr__方法的返回值，并将其格式化到指定位置 c : 整数：将数字转换成其unicode对应的值，10进制范围为 0 &lt;= i &lt;= 1114111（py27则只支持0-255）；字符：将字符添加到指定位置 o : 将整数转换成 八 进制表示，并将其格式化到指定位置 x : 将整数转换成十六进制表示，并将其格式化到指定位置 d : 将整数、浮点数转换成 十 进制表示，并将其格式化到指定位置 e : 将整数、浮点数转换成科学计数法，并将其格式化到指定位置（小写e） E : 将整数、浮点数转换成科学计数法，并将其格式化到指定位置（大写E） f : 将整数、浮点数转换成浮点数表示，并将其格式化到指定位置（默认保留小数点后6位） F : 同上 g : 自动调整将整数、浮点数转换成 浮点型或科学计数法表示（超过6位数用科学计数法），并将其格式化到指定位置（如果是科学计数则是e；） G : 自动调整将整数、浮点数转换成 浮点型或科学计数法表示（超过6位数用科学计数法），并将其格式化到指定位置（如果是科学计数则是E；） % : 当字符串中存在格式化标志时，需要用 %%表示一个百分号; 可选参数 + 右对齐；正数前加正好，负数前加负号； - 左对齐；正数前无符号，负数前加负号； 空格 右对齐；正数前加空格，负数前加负号； 0 右对齐；正数前无符号，负数前加负号；用0填充空白处 12345678910111213141516171819##!/usr/bin/python3# -*- coding:utf-8 -*-# __author__ = David# email:name = input(&quot;input your name:&quot;)job = input(&quot;input your job:&quot;)age = input(&quot;input your age:&quot;)address = input(&quot;input your address:&quot;)info = &apos;&apos;&apos;------info of %s------Name: %sJob: %sAge: %sAddress %s------ end ------&apos;&apos;&apos; % (name, name, job, age, address)print(info) 字符串转数字 12int(&quot;22&quot;)float(&quot;22&quot;) 列表 创建 12a = [1,2,3]a = list(1,2,3) 查找数值2 1a.index(2) 重复值 123a.count(2)``` 切边 a[:]a[:-1]a[-5:]a[::2]1追加 a.append(“iii”)1插入 a.insert(0,’333’)1修改 a[2] = ‘jack’a[0:2] = ‘jack’1删除 a.pop()1指定删除 a.remove(2)1全局删除 del a[2:6]1循环 for i in a: print(i)12排序不支持数字与字符混合排序 a.sort()1反转 a.reverse()1拼接 a+list1a.extend(list1)1清空 a.clear()1浅拷贝(创建独立的列表值，不影响原列表值) b = a.copy()1enumerate枚举 for i in enumerate(a): print(i)for index,value in enumerate(a): print(index, value)1深copy(内嵌列表)不建议使用，占内存 import copyb = copy.deepcopy(a)12345678910111213141516# 运算符* 算术运算&#123;% asset_img 算术运算.png %&#125; /除法永远返回浮点型(python3)* 比较运算&#123;% asset_img 比较运算.png %&#125;* 逻辑运算&#123;% asset_img 逻辑运算.png %&#125;* 赋值运算&#123;% asset_img 赋值运算.png %&#125;* 成员运算* 身份运算* 位运算# 流程控制* 单分支 if 条件 : 满足条件执行代码 1* 双分支 if 条件: 满足条件执行代码 else: 不满足条件执行代码 1* 多分支 if 条件: 满足条件执行代码 elif 条件: 满足条件执行代码 else: 不满足条件执行代码 12* while循环* dead loop while True: 执行代码 1234* continue &amp; break &gt; break跳出循环 continue执行下次循环* while else #判断循环中间没有断开过 while count &lt; 5: if count = 3: break count++ else: print(&quot;循环全部执行&quot;) 1* 查看变量在内存中的地址 a = 2 print(id(a)) `]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python 基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python 数值转换]]></title>
     <url>%2F2019%2F03%2F20%2Fpython%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2%2F</url>
     <content type="text"><![CDATA[十进制转二进制 1bin(10) 十进制转八进制 1oct(10) 十进制转16进制 1hex(10) 二进制转十进制 1int(10101010,2) 十六进制转十进制 1int(‘ff&apos;,16) 字符转ASCII 1ord(&apos;a&apos;) ASCII码转字符 1chr(97)]]></content>
@@ -329,6 +329,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[PyCharm使用]]></title>
+    <url>%2F2019%2F03%2F20%2Fpycharm-%E4%BD%BF%E7%94%A8%E7%A7%98%E7%B1%8D%2F</url>
+    <content type="text"><![CDATA[PyCharm介绍PyCharm是一种Python IDE，带有一整套可以帮助用户在使用Pythhon语言开发时提高工作效率的工具，比如调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制等。此外该IDE提供用于支持Django和Flask等框架下的专业web开发功能。 配置python解释器File-&gt;SettingsSettings-&gt;Project-&gt;Project interpreter-&gt;add local 常用快捷键复制ctrl+d删除ctrl+e切换行shift+enter注释ctrl+shift+/取消缩进 shift+tab查找ctrl+f替换ctrl+h PyCharm IDE安装插件file-&gt;settings-&gt;plugin Git配置file-&gt;settings-&gt;version control发布到github 常用操作指南 tab转space Edit-&gt; Convert Indents 同屏显示两个文件 Move right/ Move down PEP8检测 行尾注释 空两格式#空一格+注释内容 单独行注释 #空一格+注释内容 方法之间空两行]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>PyCharm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo的markdown记录]]></title>
     <url>%2F2019%2F03%2F20%2Fhexo%E7%9A%84markdown%E8%AE%B0%E5%BD%95%20%2F</url>
     <content type="text"><![CDATA[流程图添加支持npm install --save hexo-filter-flowchart 演示 1234567891011start=&gt;start: 开始loginInfo=&gt;inputoutput: 登录数据verifyLogin=&gt;subroutine: 登录验证isSuccess=&gt;condition: 验证成功？respondSuccess=&gt;operation: 响应成功responseFailure=&gt;operation: 响应失败,存储状态end=&gt;end: 结束start-&gt;loginInfo-&gt;verifyLogin-&gt;isSuccessisSuccess(yes)-&gt;respondSuccess-&gt;endisSuccess(no)-&gt;responseFailure-&gt;end 操作模块语法 操作模块 说明 start 开始 end 结束 operation 运行 condition 条件 subroutine 子任务块 inputoutput 输入输出块 多级输入判断 表格 编码 字节流 utf-8 b’\xe5\x8c\x97\xe4\xba\xac’ gbk b’\xb1\xb1\xbe\xa9’ 图像1&#123;% asset_img 实参形参.png %&#125; 特殊字符[Hexo 中 Markdown 特殊字符的处理方法:] (https://www.jianshu.com/p/a8748bf8df1b)[Markdown特殊字符转义] (https://blog.csdn.net/itas109/article/details/86480207) 链接参考1:Markdown流程图参考2:MarkDown和流程图诠释你的代码start=>start: 开始 loginInfo=>inputoutput: 登录数据 verifyLogin=>subroutine: 登录验证 isSuccess=>condition: 验证成功？ respondSuccess=>operation: 响应成功 responseFailure=>operation: 响应失败,存储状态 end=>end: 结束 start->loginInfo->verifyLogin->isSuccess isSuccess(yes)->respondSuccess->end isSuccess(no)->responseFailure->end{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12} var code = document.getElementById("flowchart-0-code").value; var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value)); var diagram = flowchart.parse(code); diagram.drawSVG("flowchart-0", options);start=>start: 开始|past requirementAnalysis=>operation: 需求分析|past design=>operation: 软件设计|past coding=>operation: 编码|past selfTestingPased=>condition: 自测通过？|approved debug=>operation: debug|invalid submitTestingPased=>condition: 提测通过？|rejected modifyBug=>operation: 修bug|current deploy=>operation: 部署|future end=>end: 结束|future start->requirementAnalysis->design->coding->selfTestingPased selfTestingPased(no)->debug(right)->selfTestingPased selfTestingPased(yes)->submitTestingPased submitTestingPased(yes)->deploy->end submitTestingPased(no)->modifyBug(right)->submitTestingPased{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12} var code = document.getElementById("flowchart-1-code").value; var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value)); var diagram = flowchart.parse(code); diagram.drawSVG("flowchart-1", options);start=>start: 开始|past coding=>operation: 读取并显示菜单|past whileFlagPassed=>condition: 是否循环？|approved chooseMenu=>inputoutput: 选择下级菜单 deploy=>operation: 多级输入判断|future end=>end: 结束|future start->coding->whileFlagPassed whileFlagPassed(no)->chooseMenu(right)->deploy(right)->whileFlagPassed whileFlagPassed(yes)->end{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12} var code = document.getElementById("flowchart-2-code").value; var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-2-options").value)); var diagram = flowchart.parse(code); diagram.drawSVG("flowchart-2", options);st=>start: 开始 e=>end: 结束 cond0=>condition: 输入 in menu？ cond1=>condition: 输入==q？ cond2=>condition: 输入==r？ cond3=>condition: 输入==其它？ op0=>operation: 执行菜单 op1=>operation: 退出菜单 op2=>operation: 返回菜单 op3=>operation: 不是菜单 op=>operation: 检测输入 st->op->cond0->e cond0(no)->cond1 cond1(no)->cond1 cond2(no)->cond1 cond0(no)->cond1 cond1(no)->cond2 cond2(no)->cond3 cond3(no)->op cond3(no)->op cond3(yes)->op3 op3(right)->op cond0(yes)->op0 cond1(yes)->op1 cond2(yes)->op2 op0(right)->op op1->e op2(right)->op{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12} var code = document.getElementById("flowchart-3-code").value; var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-3-options").value)); var diagram = flowchart.parse(code); diagram.drawSVG("flowchart-3", options);]]></content>
@@ -338,17 +349,6 @@
       </categories>
       <tags>
         <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[python的两种注释方式]]></title>
-    <url>%2F2019%2F03%2F20%2Fpython%E6%B3%A8%E9%87%8A%2F</url>
-    <content type="text"><![CDATA[为程序添加注释可以用来解释程序某些部分的作用和功能，提高程序的可读性。除此之外，注释也是调试程序的重要方式。在某些时候，我们不希望编译、执行程序中的某些代码，这时就可以将这些代码注释掉。Python 语言允许在任何地方插入空字符或注释，但不能插入到标识符和字符串中间。Python 源代码的注释有两种形式，分别是单行注释和多行注释： 单行注释Python 使用井号（＃）表示单行注释的开始，跟在“＃”号后面直到这行结束为止的代码都将被解释器忽略。单行注释就是在程序中注释一行代码，在Python 程序中将井号（＃）放在需要注释的内容之前就可以了。 多行注释多行注释是指一次性将程序中的多行代码注释掉，在 Python 程序中使用三个单引号或三个双引号将注释的内容括起来。 1234567891011#这是一行简单的注释print (&quot;Hello World!&quot;)&apos;&apos;&apos;这里面的内容全部是多行注释Python语言真的很简单&apos;&apos;&apos;# print(&quot;这行代码被注释了，将不会被编译、执行！&quot;)&quot;&quot;&quot;这是用三个双引号括起来的多行注释Python 同样是允许的&quot;&quot;&quot;]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>Python 注释</tag>
       </tags>
   </entry>
   <entry>
